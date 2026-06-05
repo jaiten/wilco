@@ -1,317 +1,299 @@
-import { Project, Division, Office, Job } from "./types";
+import { Division, Job, Office, Project, WilcoCompanyLink } from "./types";
 
-export const BRAND_NAME = "Wilco Civil Group";
-
+export const BRAND_NAME = "Wilco Civil Inc.";
+export const SERVICE_AREA = "GVRD - Vancouver Island";
 export const LOGO_URL = "https://lh3.googleusercontent.com/aida/AP1WRLtH0vOyYXnmjQKsSREJ-thBxBxIwRfPYvZCYijgpEthy5UumpsHA0_L-zdhizoC1ef4oUstVDyKFwJ3JmveMkLGZAKCgsGMZmItsfW3MW8e47jCiNrzJytgmhTTY3jAC951KIZmd3r2Ca2GLCDt_AdEmnM-d_hnqbcBuDyX_bdeSvF2mcuWMSi85x6mIbtnCubMFbLBvUsZrxZDCQ18jLR5Cvdu590gtnJwc_m9WvuNUHZd9QXwNqN2FA";
 
 export const IMAGES = {
-  headerBg: "https://lh3.googleusercontent.com/aida/AP1WRLtGydLnfj6tSbc9NxP8BF6E359JWHN-AplE6ic9uATy9RGL81amsNtbMZ75_55QIuKA6N9LxLgBUbm2T6n7CM3DI6ekkK8lyH0nSAn_o_VOfxHgtpPYbvYU2Fq5B3mAkl1qUe-xg5qOB35UW4tBNUYCu41ZZS-UlwVrDBPEAV7oh7wrbiJmZbhsbx0ATTL-wELWQ8EW6A1kLKbZeBDjYS1X4Tr5JNxquM8coqlV9qHRhxgccXpdrkNNig",
-  sunsetWorkers: "https://lh3.googleusercontent.com/aida-public/AB6AXuDbIP70zCfF6QK_C4w0NySQuzuosITgi_VXsY5gnM2scH1EYuOo5YQ1DdpS247-gUaz6GPqW_3PypQJC3E8cN03LTaAydfUy3jzA-udCqrXsyAcCF6FGwCHpCFM8ZJHfLXjp_-w1mNPa3KtGnrd9aQ4gCMfdKA4wrCGmcO5w6p2F-oXiNT3TLJt3TmbTFQ1Xp00P_nlP3U2PcBKM-zt1HNfw7m0d5yvISP0oLBA26QR7MVq9fXzVPPdnBIQO4puNj6uE21BVKyBoHg",
-  environmentalTrail: "https://lh3.googleusercontent.com/aida/AP1WRLshEaSne3xZ1de_ZWY9rEKsxIKHVlyxdHZt2oqXBYZrXd3bdJljHDeRQcIu_g9KIUtDt5XM-I-s4E7LQU5ZxaTjPmovD-8XDeDuBw_v6NQFVdF877wcI4B75Y-eu-o-Ub4SrzgbCu5fQRAJhjm7xQh56x2wtekzsjKORVil1266JeS4Zc-1ozsmlw-gKOIUqqyGFrOQ7FIUr9v2PtDHpqY5DivlGXpd48zqJlLaczv9JqosORkenbCT0Hk",
-  playgroundCivil: "https://lh3.googleusercontent.com/aida/AP1WRLvp--K1gazV4FXXENf_EcLkSeGt295oEY1sOcnH8tEhVTcDgePlJ9szFgrKNdRPQt8dvzJnw7VWXrFOcDtftCTBYrUe1ek8sEl7lSQ4-kOizPGo_zex9Hpf3VScHOn2kaje0IaGLF-esvvIfhnOvjGTwLkgWaf81mR3XywlobG3Ra_snxjtzIkhc0CpH2SUTc5A7dD4CPhuMC5Y2gcOqjzsIVm7wY5cm0GAO-m3mZLt_-Iggyc2b6-1tG4",
-  heavyMachineryGrading: "https://lh3.googleusercontent.com/aida/AP1WRLsm-5BxtIcVCrcsRw9f3q4P6ude7qT1rwZ_0wN3EWhcNzTfc43q41Pjk-_hM7XhCOiTreUx2K-c6xp9ohc06yjJL8avcFgj_oE5t0wCARCEVn1op54FlO6jhzG8NJi2s-bHkiL_O-CdcMsds_AxtZSn394ZMWxWaLSWHxC068k2hYhEFUWp17JKs0UIU-grIctPrkUBvP-XHcZml1CtJjGHUsQkgrcLhl9sDt_KE5ypPPzmz2Vr1n1xEg",
-  lushParkPathway: "https://lh3.googleusercontent.com/aida/AP1WRLs4g70PO0IrJdaB2oGKBru8fm2JBxaJ3cjxhMLoMAiVCjTRLDRi2f18ZX89fPo1a-4mLUxvqVir3CRCLLlj3S0ijtlqHRmNXAlOTyjLsIVW0K30zrhqIpWmr0l3mJ099T8FTNhCWj_aiJq_QJprZMd9EloYz249416zMKE9VCYCjoIexR6Iq372eBeCD-ZlGbT3EGnVz1_4gwaHHvRyUg23jzK4tN5tGNA3VHKDLatV1Rofi7ULGSK6-Q",
-  clarkParkAesthetic: "https://lh3.googleusercontent.com/aida/AP1WRLvxl1ne3AaMjEbIKXvktafrF2XgUCWDVW92z6-cfcY23bU6fppi1jFrKgnAFqsT2ub2tdUNVO_RylqpN_IpPaSqHTYxPLe0kx77U87r9NS1EFSic6cvuW3CyWKy-8XJmhwOsWVLaxQQ4lYf5F7D9-S0hwsZgkw92ytfh7tjnOORUpAysZ_WjdQ6aG1n01_9ZU5J4RzKsHtHXyGzktcMhDmSRyUj2bq1iBqi5GlXFUTQTzFOwCA3DwYOR8U",
-  yorksonCommunityAerial: "https://lh3.googleusercontent.com/aida/AP1WRLsdEacbGEH6VW3KWgR2G1U4h6G9qz-smf0xRJHpGQ2UW6RqJOv67yUvQvBqwY4Kir2rflq3GbeY6cezra7Tfw-F57RI4DI5QTqUwzez9EK_Wfeov-cpx1UYr0Uy5CaOo6fBrrjXhxB6OtWy2-yAtp8uwEk4_DHTj3o-XiAMHXuT4MIKkzf4e2a8DwYF9KE8Y67f4znnbA__kL3Wf5crJHytlEymDKLELzq1hQNUsxGPEb60go7ULKLWWjc",
+  headerBg: new URL("../assets/generated/civil-hero.png", import.meta.url).href,
+  sunsetWorkers: new URL("../assets/generated/site-team-sunset.png", import.meta.url).href,
+  environmentalTrail: new URL("../assets/generated/environmental-trail.png", import.meta.url).href,
+  playgroundCivil: new URL("../assets/generated/playground-civil.png", import.meta.url).href,
+  heavyMachineryGrading: new URL("../assets/generated/heavy-machinery-grading.png", import.meta.url).href,
+  lushParkPathway: new URL("../assets/generated/lush-park-pathway.png", import.meta.url).href,
+  clarkParkAesthetic: new URL("../assets/generated/civic-park-hardscape.png", import.meta.url).href,
+  yorksonCommunityAerial: new URL("../assets/generated/community-aerial.png", import.meta.url).href,
+  pipelineCorridor: new URL("../assets/generated/pipeline-corridor.png", import.meta.url).href,
 };
 
+const categoryLabels: Record<Project["category"], string> = {
+  buildings_structures: "Buildings & Structures",
+  civil: "Civil Works",
+  environmental: "Environmental",
+  landscape: "Landscapes",
+  parks: "Parks",
+  sportsfields: "Sportsfields",
+  streetscapes_roads: "Streetscapes and Roads",
+  urban_spaces: "Urban Spaces",
+};
+
+const categoryImages: Record<Project["category"], string> = {
+  buildings_structures: IMAGES.clarkParkAesthetic,
+  civil: IMAGES.heavyMachineryGrading,
+  environmental: IMAGES.environmentalTrail,
+  landscape: IMAGES.lushParkPathway,
+  parks: IMAGES.clarkParkAesthetic,
+  sportsfields: IMAGES.playgroundCivil,
+  streetscapes_roads: IMAGES.pipelineCorridor,
+  urban_spaces: IMAGES.yorksonCommunityAerial,
+};
+
+function slugify(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+
+function portfolioProject(
+  title: string,
+  location: string,
+  category: Project["category"],
+  completionYear = "N/A",
+  featured = false,
+): Project {
+  const yearText = completionYear === "N/A" ? "" : `, listed with a ${completionYear} project year`;
+  return {
+    id: `proj_${slugify(title)}_${slugify(location)}`,
+    title,
+    category,
+    categoryLabel: categoryLabels[category],
+    location,
+    description: `${title} is listed in Wilco Civil's portfolio for ${location}${yearText}.`,
+    imageUrl: categoryImages[category],
+    completionYear,
+    featured,
+    technicalSpecs: [
+      categoryLabels[category],
+      location,
+      completionYear === "N/A" ? "Year not listed in supplied portfolio text" : `Listed project year: ${completionYear}`,
+    ],
+  };
+}
+
 export const PROJECTS: Project[] = [
-  {
-    id: "proj_harewood",
-    title: "Harewood Centennial Park",
-    category: "parks",
-    categoryLabel: "Parks & Recreation",
-    location: "Nanaimo, BC",
-    description: "Complete park redevelopment including detailed earthwork contouring, specialized concrete retaining walls, integrated custom playground modules, water control setups, and comprehensive civil-grade sports courts infrastructure.",
-    imageUrl: IMAGES.clarkParkAesthetic,
-    completionYear: "2024",
-    client: "City of Nanaimo / Provincial Parks Group",
-    size: "12 Acres",
-    featured: true,
-    technicalSpecs: [
-      "22,000 m³ mass grading and terrain shaping",
-      "Custom architectural softscape with 120+ native mature trees",
-      "High-spec underground drainage and sub-surface irrigation loops",
-      "Bespoke structural wood structures integrated into active zones"
-    ]
-  },
-  {
-    id: "proj_yorkson",
-    title: "Yorkson Community Park",
-    category: "urban_spaces",
-    categoryLabel: "Urban Spaces / Community",
-    location: "Langley, BC",
-    description: "Multidisciplinary civil development encompassing advanced mass grading, deep utility networks installation, sustainable water retention basins, and top-tier community landscape architectural builds.",
-    imageUrl: IMAGES.yorksonCommunityAerial,
-    completionYear: "2023",
-    client: "Township of Langley & Private Developer JV",
-    size: "45 Hectares",
-    featured: true,
-    technicalSpecs: [
-      "GPS-guided 3D grading precision for water runoff safety",
-      "Over 4.5km of high-density storm and sanitary lines",
-      "Architectural concrete walkways and structural seat barriers",
-      "Sustainable biological filtration wetlands implementation"
-    ]
-  },
-  {
-    id: "proj_wlc_popup",
-    title: "WLC Pop-Up Plaza & Urban Garden",
-    category: "landscape",
-    categoryLabel: "Landscape Architecture",
-    location: "Vancouver, BC",
-    description: "A showcase of modular urban landscape design combining contemporary heavy Timber elements with concrete paving, lush modular planter boxes, and integrated smart stormwater capture buffers.",
-    imageUrl: IMAGES.environmentalTrail,
-    completionYear: "2025",
-    client: "Metro Vancouver Public Space Initiative",
-    size: "1.2 Acres",
-    featured: false,
-    technicalSpecs: [
-      "Precast structural block foundations on quick-drain gravel beds",
-      "Integrated micro-drip smart sensor irrigation control",
-      "100% recycled structural composite accents",
-      "Pedestrian paving matching strict slip-resistance engineering standards"
-    ]
-  },
-  {
-    id: "proj_regional_pipeline",
-    title: "Regional Pipeline Integration & Ground Prep",
-    category: "civil",
-    categoryLabel: "Civil Infrastructure",
-    location: "Edmonton Region, AB",
-    description: "Heavy civil infrastructure preparation involving complex corridor clearing, deep trenching in variable shale geology, and precision backfill/site restoration protocols over dozens of kilometers.",
-    imageUrl: IMAGES.headerBg,
-    completionYear: "2024",
-    client: "Western Infrastructure Partners",
-    size: "34 km corridor",
-    featured: true,
-    technicalSpecs: [
-      "140,000 m³ of precision rock extraction and grading",
-      "Continuous environmental monitoring with 0 ecological incidents",
-      "Trench stabilization using innovative steel shielding system",
-      "Complete native subsoil restoration and top-grade seeding"
-    ]
-  },
-  {
-    id: "proj_saskatoon_sports",
-    title: "Saskatoon Multi-Sport Turf Complex",
-    category: "sportsfields",
-    categoryLabel: "Sportsfields & Arenas",
-    location: "Saskatoon, SK",
-    description: "The premier municipal athletic facility of its kind, incorporating precision laser-graded base beds, automated sub-surface drainage arrays, and professional-grade synthetic turf engineered for Extreme climate resilience.",
-    imageUrl: IMAGES.playgroundCivil,
-    completionYear: "2023",
-    client: "City of Saskatoon",
-    size: "4 Turf Pitches",
-    featured: true,
-    technicalSpecs: [
-      "Sub-base laser grading held within +/- 2mm tolerances",
-      "Automated heavy-storm drainage routing to underground storage",
-      "Resilient shockpad layers optimized for impact absorption criteria",
-      "Integration of high-intensity commercial field lighting bases"
-    ]
-  },
-  {
-    id: "proj_regina_bypass",
-    title: "Regina Industrial Bypass Site Work",
-    category: "civil",
-    categoryLabel: "Heavy Civil Operations",
-    location: "Regina, SK",
-    description: "Substantial industrial subdivision grading, foundational compaction for heavy machinery loads, and major arterial roadbed construction designed to manage heavy logistical flows.",
-    imageUrl: IMAGES.heavyMachineryGrading,
-    completionYear: "2025",
-    client: "Saskatchewan Ministry of Infrastructure",
-    size: "80 Hectares subdivided",
-    featured: false,
-    technicalSpecs: [
-      "Dynamic field compaction reaching 98% Standard Proctor Density",
-      "Installation of oil-grit separators for water-safety compliance",
-      "Engineered road sub-base to withstand 30-year heavy transit cycles",
-      "Advanced dust and erosion controls during dry winds"
-    ]
-  }
+  portfolioProject("Harewood Centennial Park Artificial Turf Fields Civil Works", "Nanaimo, BC", "sportsfields", "2024", true),
+  portfolioProject("Mission Sportsfields", "Mission, BC", "sportsfields", "2007", true),
+  portfolioProject("Yorkson Community Park Phase 1", "Langley, BC", "parks", "2017", true),
+  portfolioProject("Westminster Pier Park", "New Westminster, BC", "urban_spaces", "2012", true),
+  portfolioProject("Town Centre Park Tournament Site", "Coquitlam, BC", "sportsfields", "2008", true),
+  portfolioProject("University of Guelph Athletic Field Multiplex", "Guelph, ON", "sportsfields", "2011"),
+  portfolioProject("Aberdeen Neighbourhood Park - Phase 2", "Richmond, BC", "parks", "2022", true),
+  portfolioProject("Town Centre Park - Lake Loop Landscape Construction", "Coquitlam, BC", "landscape", "2022", true),
+  portfolioProject("Newton Athletic Park", "Surrey, BC", "sportsfields", "2013"),
+  portfolioProject("Newton Exchange Improvements", "Surrey, BC", "streetscapes_roads", "2013"),
+  portfolioProject("North Shore Indoor Training Center Air Structure Foundation & Civil Work", "North Vancouver, BC", "buildings_structures"),
+  portfolioProject("Minoru Lakes Renewal", "Richmond, BC", "environmental", "2023"),
+  portfolioProject("Willoughby Community Park Fields", "Langley, BC", "sportsfields", "2020"),
+  portfolioProject("SEFC Olympic Village & Waterfront", "Vancouver, BC", "urban_spaces", "2009"),
+  portfolioProject("Zellers Plaza", "Burnaby, BC", "urban_spaces", "2005"),
+  portfolioProject("Brae Island", "Vancouver, BC", "parks", "2007"),
+  portfolioProject("Burnaby Streets Beautification", "Burnaby, BC", "streetscapes_roads", "2011"),
+  portfolioProject("UBC Thunderbird Park Sportsfield & Athletic Track Redevelopment", "Vancouver, BC", "sportsfields", "2010"),
+  portfolioProject("Whistler Gateway Loop Development Phase 1 - Civil & Landscape", "Whistler, BC", "civil", "2017"),
+  portfolioProject("Notre Dame Regional Secondary School Sports Field", "Vancouver, BC", "sportsfields", "2022"),
+  portfolioProject("Willoughby Community Sports Fields", "Langley, BC", "sportsfields", "2008"),
+  portfolioProject("Latimer Pond 15", "Langley, BC", "environmental", "2017"),
+  portfolioProject("Pinetree Way Enhancements", "Coquitlam, BC", "streetscapes_roads", "2016"),
+  portfolioProject("Clark Park East Replacement", "Vancouver, BC", "parks", "2018"),
+  portfolioProject("Edmonds Community Plaza", "Burnaby, BC", "urban_spaces", "2014"),
+  portfolioProject("Granville and 70th", "Vancouver, BC", "urban_spaces", "2013"),
+  portfolioProject("Willoughby Community Park Site Improvements", "Langley, BC", "parks", "2020"),
+  portfolioProject("Pandora Children's Spray Park", "Vancouver, BC", "parks", "2013"),
+  portfolioProject("North Delta Track and Field Facility and Civil Works", "Delta, BC", "sportsfields", "2021"),
+  portfolioProject("New Brighton Park Shoreline Habitat Restoration", "Vancouver, BC", "environmental", "2017"),
+  portfolioProject("Olympic Oval Sport and Event Plaza Design Build", "Richmond, BC", "urban_spaces", "2023"),
+  portfolioProject("Lions Park Phase 1 Overland Flow Protection System", "Medicine Hat, AB", "environmental", "2016"),
+  portfolioProject("Alberni Secondary School Sportsfields", "Port Alberni, BC", "sportsfields", "2012"),
+  portfolioProject("Minoru Sports Complex Design-Build", "Richmond, BC", "sportsfields", "2014"),
+  portfolioProject("Squamish Nation Pedestrian Bridge", "Squamish, BC", "civil", "2012"),
+  portfolioProject("Lynn Canyon Park Parking and Circulation Improvements", "North Vancouver, BC", "streetscapes_roads", "2020"),
+  portfolioProject("Concord False Creek Pop Up", "Vancouver, BC", "urban_spaces"),
+  portfolioProject("10th Ave Hospital Zone Phase 2", "Vancouver, BC", "streetscapes_roads", "2021"),
+  portfolioProject("Fraser Highway Widening", "Surrey to Langley, BC", "streetscapes_roads", "2012"),
+  portfolioProject("Mountain View Park", "Coquitlam, BC", "parks", "2018"),
+  portfolioProject("Newton Town Centre Detention Pond", "Surrey, BC", "environmental", "2016"),
+  portfolioProject("Hillcrest Park Construction and Riley Park Renovation", "Vancouver, BC", "parks", "2016"),
+  portfolioProject("Centennial Beach", "Vancouver, BC", "parks", "2012"),
+  portfolioProject("Richmond Oval", "Richmond, BC", "urban_spaces"),
+  portfolioProject("Garrison Crossing Village", "Chilliwack, BC", "urban_spaces", "2009"),
+  portfolioProject("Oceanfront Squamish", "Squamish, BC", "urban_spaces", "2024"),
+  portfolioProject("Slocan Park Grass Sport Field Renewals", "Vancouver, BC", "sportsfields", "2020"),
+  portfolioProject("Fraser River Flood Protection", "Surrey, BC", "environmental", "2011"),
+  portfolioProject("Queen's University Design Build", "Kingston, ON", "sportsfields", "2011"),
+  portfolioProject("Surrey Bend Regional Park Phase 2", "Surrey, BC", "parks", "2016"),
+  portfolioProject("Triangle Park", "Vancouver, BC", "parks", "2012"),
+  portfolioProject("River Green Parcel 9", "Richmond, BC", "urban_spaces", "2017"),
+  portfolioProject("PRC Sports Field & Athletics Facility", "Coldstream, BC", "sportsfields", "2015"),
+  portfolioProject("Shaw Tower", "Vancouver, BC", "buildings_structures", "2008"),
+  portfolioProject("BC Parkway Upgrade Construction", "Vancouver, Burnaby, New Westminster, Surrey, BC", "streetscapes_roads", "2015"),
+  portfolioProject("Evelyn Parcel Phase 1, 2 & 5", "West Vancouver, BC", "urban_spaces", "2013"),
 ];
 
 export const DIVISIONS: Division[] = [
   {
     id: "div_civil",
-    title: "Civil Engineering",
-    code: "DIVISION 01",
-    description: "Our civil division provides heavy-duty site preparation, underground utility systems installation, and highly complex earthworks. We specialize in transforming raw rugged terrain into foundation-ready, high-integrity sites for municipal complexes, industrial centers, and massive urban developments.",
+    title: "Civil Construction",
+    code: "GVRD - VANCOUVER ISLAND",
+    description: "Wilco Civil Inc. supports Lower Mainland and Vancouver Island civil works, including site preparation, underground servicing, roadworks, drainage, grading, and public realm construction.",
     imageUrl: IMAGES.heavyMachineryGrading,
     services: [
-      "Bulk Earthworks & GPS Site Grading",
-      "Deep Trench Under-Ground Utilities Infrastructure",
-      "Industrial Road Base Construction & Heavy Paving Prep",
-      "Advanced Water Management & Retention Systems"
+      "Civil works and site preparation",
+      "Road, pathway, and streetscape construction",
+      "Drainage and stormwater infrastructure",
+      "Sportsfield base and civil works"
     ],
     features: [
-      "3D digital model GPS grading on modern fleets",
-      "Strict compaction verification using nuclear density gauges",
-      "Sewer/Storm deep utility excavation specialists"
+      "GVRD and Vancouver Island operating focus",
+      "Municipal, institutional, and public realm delivery",
+      "Portfolio-backed civil and landscape construction"
     ]
   },
   {
     id: "div_landscape",
-    title: "Landscape Architecture",
-    code: "DIVISION 02",
-    description: "Beyond core structural engineering, we construct aesthetic, durable, and highly functional environments. Our commercial landscape division handles master-planned community park developments, premier sports facilities, and high-end municipal plazas that foster connected public spaces.",
-    imageUrl: IMAGES.playgroundCivil,
+    title: "Landscape Construction",
+    code: "PARKS - SPORTS - PUBLIC REALM",
+    description: "The local team builds parks, sportsfields, plazas, waterfronts, trails, and civic landscapes across Metro Vancouver, the Fraser Valley, Sea to Sky communities, and Vancouver Island.",
+    imageUrl: IMAGES.lushParkPathway,
     services: [
-      "Commercial Softscape, Turf Systems & Intelligent Irrigation",
-      "Parks, Playgrounds, and Custom Structural Timber Builds",
-      "Hardscape, Pattern Concrete, and Retaining Block Systems",
-      "Ecological Restoration & Habitat Remediation Projects"
+      "Parks and urban spaces",
+      "Sportsfields and athletic facilities",
+      "Landscape construction and planting",
+      "Environmental restoration and shoreline work"
     ],
     features: [
-      "Full COR-compliant park build capabilities",
-      "Extensive specialized carpentry for custom park features",
-      "Deep logistics management of heavy nursery assets"
+      "Public park and waterfront project experience",
+      "Sportsfield and turf construction history",
+      "Environmental and habitat restoration portfolio"
     ]
   }
 ];
 
-export const OFFICES: Office[] = [
+export const PRIMARY_OFFICE: Office = {
+  id: "off_wilco_civil",
+  city: "Wilco Civil Inc.",
+  role: "GVRD - Vancouver Island",
+  address: "Serving Greater Vancouver Regional District and Vancouver Island",
+  phone: "Use the local inquiry form",
+  email: "info@wilcocivil.ca",
+  coordinates: { x: 50, y: 50 },
+};
+
+export const OFFICES: Office[] = [PRIMARY_OFFICE];
+
+export const WILCO_COMPANY_LINKS: WilcoCompanyLink[] = [
   {
-    id: "off_calgary",
-    city: "Calgary Office",
-    role: "Corporate Head Office",
-    address: "123 Civil Way SE, Calgary, AB T2P 1A1",
-    phone: "(403) 555-0100",
-    email: "calgary@wilcocivil.ca",
-    coordinates: { x: 35, y: 70 }
+    name: "Wilco Civil",
+    region: "GVRD - Vancouver Island",
+    url: "https://wilcocivil.ca/",
   },
   {
-    id: "off_saskatoon",
-    city: "Saskatoon Office",
-    role: "Saskatchewan Regional Hub",
-    address: "456 Bridge Ave, Saskatoon, SK S7K 1V9",
-    phone: "(306) 555-0122",
-    email: "saskatoon@wilcocivil.ca",
-    coordinates: { x: 55, y: 55 }
+    name: "Wilco Northwest",
+    region: "Northwestern Canada",
+    url: "https://wilconw.ca/",
   },
   {
-    id: "off_regina",
-    city: "Regina Office",
-    role: "Southern Prairie Branch",
-    address: "789 Prairie Blvd, Regina, SK S4P 3Y2",
-    phone: "(306) 555-0199",
-    email: "regina@wilcocivil.ca",
-    coordinates: { x: 60, y: 72 }
+    name: "Wilco Southwest",
+    region: "Southwestern Ontario",
+    url: "https://wilcosouthwest.ca/",
   },
   {
-    id: "off_edmonton",
-    city: "Edmonton Office",
-    role: "Northern Alberta Operations",
-    address: "101 Capital Plaza, Edmonton, AB T5J 2Z2",
-    phone: "(780) 555-0188",
-    email: "edmonton@wilcocivil.ca",
-    coordinates: { x: 30, y: 45 }
+    name: "Wilco Contractors Superior",
+    region: "Winnipeg and Manitoba",
+    url: "https://wilcosuperior.ca/",
   },
-  {
-    id: "off_fortmcmurray",
-    city: "Fort McMurray Office",
-    role: "Industrial Mining Support",
-    address: "202 Oil Sands Way, Fort McMurray, AB T9H 1A1",
-    phone: "(780) 555-0177",
-    email: "fortmcmurray@wilcocivil.ca",
-    coordinates: { x: 40, y: 20 }
-  }
 ];
 
 export const SAFETY_PRINCIPLES = [
   {
     title: "Individual Responsibility",
-    description: "Every single team member in the field has the ultimate authority and the ethical duty to instantly STOP WORK if they identify an unsafe condition or hazard."
+    description: "Every field member has authority and responsibility to stop work when a condition is unsafe."
   },
   {
-    title: "Zero Tolerance",
-    description: "We work under a uncompromising zero-incident goal on every single job site—whether it is a simple city pathway or a complex industrial development."
+    title: "Local Compliance",
+    description: "Work is planned around British Columbia municipal, provincial, and site-specific safety requirements."
   },
   {
     title: "Continuous Field Audits",
-    description: "Our protocols are continuously subjected to rigorous weekly internal inspections and bi-annual independent audits to ensure absolute standard compliance."
+    description: "Project teams use regular inspections and hazard reviews to keep active work fronts controlled."
   },
   {
     title: "Safety Leadership",
-    description: "Management actively participates in weekly field inspections, daily safety briefings (FLHAs), and local safety steering committee sessions."
+    description: "Supervisors and site leads participate directly in safety planning, daily coordination, and field reviews."
   }
 ];
 
 export const CAREER_LISTINGS: Job[] = [
   {
     id: "job_01",
-    title: "Senior Heavy Estimator - Civil",
+    title: "Civil Estimator",
     department: "Engineering",
-    location: "Calgary, AB",
+    location: "Lower Mainland / Vancouver Island, BC",
     type: "Full-Time, Permanent",
-    description: "We are seeking an experienced Civil Estimator to lead major infrastructure bid preparations. The candidate will work closely with digital terrain models, mass earthwork analysis, and deep utility design bids to secure high-value civic projects.",
+    description: "Support civil and landscape construction estimating for municipal, institutional, sportsfield, and public realm work in the Wilco Civil Inc. service area.",
     requirements: [
-      "Minimum 7 years of heavy civil estimation experience in Western Canada",
-      "High proficiency with standard bidding software (e.g., HeavyBid, Bid2Win)",
-      "Strong background in analyzing mass earthwork balancing and deep utility quotes",
-      "Degree in Civil Engineering or Construction Management is preferred"
+      "Civil construction estimating or project coordination experience",
+      "Familiarity with municipal specifications and construction drawings",
+      "Strong quantity takeoff, pricing, and communication skills",
+      "British Columbia project experience is preferred"
     ],
     benefits: [
-      "Highly competitive salary with annual Performance Bonus structures",
-      "Comprehensive employer-paid health, dental, and vision coverage",
-      "Matching RRSP program up to 5%",
-      "Flexible hybrid head-office work structure"
+      "Competitive compensation",
+      "Local and regional project exposure",
+      "Experienced civil and landscape construction team",
+      "Career growth across public realm and infrastructure work"
     ]
   },
   {
     id: "job_02",
-    title: "Heavy Equipment Operator (Excavator / Subgrade)",
+    title: "Heavy Equipment Operator",
     department: "Operations",
-    location: "Edmonton & Field Sites, AB",
+    location: "GVRD / Vancouver Island Field Sites",
     type: "Full-Time, Seasonal",
-    description: "Seeking skilled Excavator Operators with active experience utilizing GPS-guided controls (Trimble/TopoCon) for precise ditching, pipe laying, mass grading, and subgrade preparations.",
+    description: "Operate civil construction equipment for grading, excavation, roadworks, sportsfield, and landscape construction projects.",
     requirements: [
-      "Clean class 5 license and minimum 5 years operating 20-40 ton excavators",
-      "Direct expertise operating laser and GPS-integrated subgrade controls",
-      "Active CSTS-2020 (Construction Safety Training) and Ground Disturbance II",
-      "Strong alignment with zero-incident group safety values"
+      "Experience operating excavators, loaders, compactors, or graders",
+      "Comfort working on active municipal and public realm sites",
+      "Valid safety training for British Columbia construction sites",
+      "Strong alignment with field safety practices"
     ],
     benefits: [
-      "Premium progressive hourly wages with robust overtime schedules",
-      "Living out allowance (LOA) for travel and remote operations",
-      "Excellent company-provided safety gear and winter outfitting",
-      "Guaranteed priority recall for following spring operations"
+      "Regional field work",
+      "Varied civil and landscape construction projects",
+      "Safety-focused site culture",
+      "Seasonal recall opportunities"
     ]
   },
   {
     id: "job_03",
-    title: "Civil Project Quality Manager",
+    title: "Project Coordinator",
     department: "Management",
-    location: "Saskatoon, SK",
+    location: "Lower Mainland, BC",
     type: "Full-Time, Permanent",
-    description: "Seeking a field-focused Construction Project Manager or Quality Lead to oversee Saskatoon-area commercial park developments, sportsfields, and waterfront stabilization operations.",
+    description: "Coordinate project documentation, scheduling, submittals, field communication, and municipal stakeholder support for Wilco Civil Inc. projects.",
     requirements: [
-      "Minimum 4 years project management or field engineering experience",
-      "Strong familiarity with municipal quality specs for soil, compaction, and concrete",
-      "Proficient using Microsoft Projects and Resource Tracking platforms",
-      "Outstanding communication and client coordination abilities"
+      "Construction coordination or field engineering experience",
+      "Strong familiarity with drawings, specifications, and change tracking",
+      "Organized communication with field teams and project stakeholders",
+      "Civil or landscape construction background is preferred"
     ],
     benefits: [
-      "Generous vehicle allowance or provided quality utility vehicle",
-      "Comprehensive medical benefits package with family options",
-      "Annual technical and professional education paid sponsorship",
-      "Collaborative, high-morale company culture and career growth path"
+      "Hands-on public infrastructure project experience",
+      "Collaborative project delivery environment",
+      "Professional development opportunities",
+      "Competitive benefits package"
     ]
   }
 ];
 
 export const COMPANY_QA_TRANSCRIPTS = [
   {
-    question: "How long has Wilco Civil been active?",
-    answer: "For over 30 years (founded in 1993), delivering state-of-the-art civil engineering, mass earthworks, and elite commercial landscape development projects across Western Canada."
+    question: "What area does Wilco Civil Inc. serve?",
+    answer: "This site is focused on Wilco Civil Inc. for the GVRD and Vancouver Island service area."
   },
   {
-    question: "Do you hold active COR safety certifications?",
-    answer: "Yes. Wilco Civil holds continuous, nationally recognized Certificate of Recognition (COR) credentials across Alberta, Saskatchewan, and British Columbia, affirming that our safety systems exceed provincial standards."
+    question: "Are other Wilco companies handled through this contact form?",
+    answer: "No. This inquiry path is for Wilco Civil Inc. only. Links to other Wilco regional companies are provided on the contact page."
   },
   {
-    question: "What project management frameworks do you use?",
-    answer: "We utilize industry-standard CPM scheduling through Microsoft Projects paired with real-time field data accounting on the Explorer Construction System to secure absolute transparency and schedule fidelity."
+    question: "What kind of work is shown in the portfolio?",
+    answer: "The portfolio reflects supplied Wilco Civil project listings across civil works, sportsfields, parks, urban spaces, landscapes, streetscapes, roads, environmental work, and buildings or structures."
   }
 ];

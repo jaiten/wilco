@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, Shield, FileText, Landmark, Users } from "lucide-react";
-import { IMAGES, COMPANY_QA_TRANSCRIPTS, BRAND_NAME } from "../data";
+import { IMAGES, COMPANY_QA_TRANSCRIPTS, BRAND_NAME, SERVICE_AREA } from "../data";
 
 interface AboutViewProps {
   onRequestQuote: () => void;
@@ -20,13 +20,13 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
         <div className="absolute inset-0 opacity-10 select-none pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(135deg, #004225 0, #004225 4px, transparent 0, transparent 50px)" }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <span className="font-mono text-xs text-gold font-bold uppercase tracking-[0.2em] mb-4 block">
-            ESTABLISHED 1993
+            {SERVICE_AREA}
           </span>
           <h1 className="font-display text-4xl sm:text-5xl font-black mb-6 tracking-tight">
-            About Wilco Civil Group
+            About {BRAND_NAME}
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
-            Founded with a single bulldozer and an uncompromising commitment to engineering performance, Wilco Civil has expanded to become Western Canada’s premier public and private civil development partner.
+            Wilco Civil Inc. serves the Greater Vancouver Regional District and Vancouver Island with civil, landscape, sportsfield, environmental, streetscape, and public realm construction experience.
           </p>
         </div>
       </section>
@@ -43,7 +43,7 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
             </h2>
             <div className="h-1 w-20 bg-secondary mb-8" />
             <p className="font-sans text-sm text-text-slate mb-6 leading-relaxed">
-              For three decades, Wilco Civil Group has executed high-intensity civil projects across Western Canada. Our dual-division strategy (Heavy Civil &amp; Landscape Architecture) gives us a unique competitive advantage: the capability to guide raw, untamed terrain through major excavation, underground infrastructure servicing, high-spec grading, and complete, award-winning architectural hardscape finish.
+              {BRAND_NAME} has delivered civil and landscape construction projects across the Lower Mainland, Vancouver Island, and nearby British Columbia communities. Our dual civil and landscape construction experience supports public parks, sportsfields, streetscapes, urban spaces, environmental work, and complex site development.
             </p>
             <p className="font-sans text-sm text-text-slate mb-8 leading-relaxed">
               We own, manage, and deploy a state-of-the-art telemetry fleet of heavy excavators, graders, compactors, and custom utility lines. This, combined with our in-house engineering and safety leads, ensures absolute project control, schedule fidelity, and flawless delivery.
@@ -99,7 +99,7 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
               <Shield className="w-10 h-10 text-secondary mb-4" />
               <h4 className="font-display text-base font-bold text-primary mb-2">Uncompromised Safety</h4>
               <p className="font-sans text-xs text-text-slate leading-relaxed">
-                National COR-compliance certification held continuously with zero tolerance endpoints.
+                Field safety practices aligned to local project requirements.
               </p>
             </div>
 

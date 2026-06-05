@@ -11,45 +11,36 @@ import ContactView from "./components/ContactView";
 import CareersView from "./components/CareersView";
 import QuoteModal from "./components/QuoteModal";
 
+const VALID_TABS = ["home", "about", "services", "portfolio", "safety", "environment", "contact", "careers"];
+
+function pathToTab(pathname: string): string {
+  const segment = pathname.replace(/^\//, "") || "home";
+  return VALID_TABS.includes(segment) ? segment : "home";
+}
+
+function tabToPath(tab: string): string {
+  return tab === "home" ? "/" : `/${tab}`;
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>("home");
-  
+  const [activeTab, setActiveTab] = useState<string>(() => pathToTab(window.location.pathname));
+
   // Modal controllers
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quoteType, setQuoteType] = useState<string>("quote");
   const [targetJobTitle, setTargetJobTitle] = useState<string>("");
 
-  // Sync hash routing
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash && ["home", "about", "services", "portfolio", "safety", "environment", "contact", "careers"].includes(hash)) {
-        setActiveTab(hash);
-        window.scrollTo(0, 0);
-      } else {
-        // Fallback or default
-        setActiveTab("home");
-        window.location.hash = "#home";
-      }
+    const handlePopState = () => {
+      setActiveTab(pathToTab(window.location.pathname));
+      window.scrollTo(0, 0);
     };
-
-    // Listen to changes
-    window.addEventListener("hashchange", handleHashChange);
-    
-    // Initial load
-    if (!window.location.hash) {
-      window.location.hash = "#home";
-    } else {
-      handleHashChange();
-    }
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const handleNavigate = (tab: string) => {
-    window.location.hash = `#${tab}`;
+    window.history.pushState(null, "", tabToPath(tab));
     setActiveTab(tab);
     window.scrollTo(0, 0);
   };

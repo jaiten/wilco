@@ -5,7 +5,7 @@ import { Project } from "../types";
 
 export default function PortfolioView() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [expandedProjId, setExpandedProjId] = useState<string | null>("proj_harewood"); // Default expand the prominent Nanaimo case study
+  const [expandedProjId, setExpandedProjId] = useState<string | null>(PROJECTS[0]?.id || null);
 
   const toggleExpand = (id: string) => {
     setExpandedProjId(expandedProjId === id ? null : id);
@@ -14,11 +14,14 @@ export default function PortfolioView() {
   // Filter categories
   const categories = [
     { value: "all", label: "Show All" },
-    { value: "civil", label: "Civil Infrastructure" },
-    { value: "landscape", label: "Landscape Architecture" },
+    { value: "civil", label: "Civil" },
     { value: "sportsfields", label: "Sportsfields & Turf" },
-    { value: "parks", label: "Parks & Recreation" },
-    { value: "urban_spaces", label: "Community Spaces" }
+    { value: "buildings_structures", label: "Buildings & Structures" },
+    { value: "parks", label: "Parks" },
+    { value: "urban_spaces", label: "Urban Spaces" },
+    { value: "landscape", label: "Landscapes" },
+    { value: "streetscapes_roads", label: "Streetscapes & Roads" },
+    { value: "environmental", label: "Environmental" }
   ];
 
   const filteredProjects = selectedCategory === "all"
@@ -38,7 +41,7 @@ export default function PortfolioView() {
             Our Case Studies
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
-            Explore our footprint of high-profile civil developments, sports arenas, and master-planned parks across Western Canada. Every project is built to outstanding standards of tolerance and longevity.
+            Explore Wilco Civil portfolio listings across civil works, sportsfields, parks, urban spaces, landscapes, streetscapes, roads, environmental work, and buildings or structures.
           </p>
         </div>
       </section>
@@ -113,7 +116,7 @@ export default function PortfolioView() {
                         </span>
                       )}
                       <span className="flex items-center gap-1.5 font-bold">
-                        <Calendar className="w-4 h-4 text-primary shrink-0" /> Handover: {proj.completionYear}
+                        <Calendar className="w-4 h-4 text-primary shrink-0" /> {proj.completionYear === "N/A" ? "Year not listed" : `Year: ${proj.completionYear}`}
                       </span>
                       {proj.size && (
                         <span className="flex items-center gap-1.5 font-bold">
@@ -127,7 +130,7 @@ export default function PortfolioView() {
                         onClick={() => toggleExpand(proj.id)}
                         className="font-mono text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary flex items-center gap-1.5 transition-colors cursor-pointer"
                       >
-                        {isExpanded ? "Collapse Specs" : "Expand Technical Specs"} 
+                        {isExpanded ? "Collapse Details" : "View Listed Details"} 
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </button>
                     </div>
@@ -138,26 +141,26 @@ export default function PortfolioView() {
                 {isExpanded && proj.technicalSpecs && (
                   <div className="p-8 md:p-12 bg-background-warm border-t border-primary/10 animate-slide-down">
                     <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-4">
-                      PROJECT PARAMETERS &amp; ENGINEERING METRICS
+                      LISTED PROJECT DETAILS
                     </span>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-4">
                         <h4 className="font-display text-base font-bold text-primary border-b border-primary/5 pb-2">
-                          Contract Scope &amp; Logistics
+                          Portfolio Listing
                         </h4>
                         <p className="font-sans text-xs sm:text-sm text-text-slate leading-relaxed">
-                          This operation required high coordination with regional municipal inspectors, strict sub-soil compacting audits, environmental siltation barriers, and specialized laser-leveling devices to respect the +/- 5mm gradient tolerance parameters.
+                          This project entry is drawn from the supplied Wilco Civil portfolio list. Details shown here are limited to the listed title, category, location, and year.
                         </p>
                       </div>
 
                       <div className="space-y-3">
                         <h4 className="font-display text-base font-bold text-primary border-b border-primary/5 pb-2">
-                          Core Quantities Handled
+                          Listed Attributes
                         </h4>
                         <ul className="space-y-2.5">
                           {proj.technicalSpecs.map((spec, specIdx) => (
                             <li key={specIdx} className="flex gap-2.5 text-xs text-text-iron leading-relaxed">
-                              <span className="text-secondary font-bold font-mono">✔️</span>
+                              <span className="text-secondary font-bold font-mono">OK</span>
                               <span className="font-sans md:text-xs text-text-slate">{spec}</span>
                             </li>
                           ))}

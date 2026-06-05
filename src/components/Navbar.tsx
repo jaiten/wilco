@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Menu, X, Shield, Phone, ChevronRight } from "lucide-react";
-import { LOGO_URL, BRAND_NAME } from "../data";
+import { Menu, X, Shield, Mail, ChevronRight } from "lucide-react";
+import { BRAND_NAME, SERVICE_AREA, LOGO_URL } from "../data";
+
 
 interface NavbarProps {
   activeTab: string;
@@ -28,37 +29,37 @@ export default function Navbar({ activeTab, onNavigate, onRequestQuote }: Navbar
 
   return (
     <>
+    
       {/* Top micro bar for safety compliance alerts */}
       <div className="bg-primary-light text-white text-[11px] font-mono uppercase tracking-widest py-2 px-6 flex justify-between items-center z-40 relative">
         <div className="flex items-center gap-2">
           <Shield className="w-4 h-4 text-secondary fill-current shrink-0" />
-          <span className="font-bold">National COR-Compliance Certification Verified</span>
+          <span className="font-bold">Wilco Civil Inc. &mdash; {SERVICE_AREA}</span>
         </div>
         <div className="hidden md:flex items-center gap-4">
-          <span className="text-white/70">Bid Desk Central:</span>
-          <a href="tel:4035550100" className="hover:text-gold transition-colors font-bold">(403) 555-0100</a>
+          <button onClick={() => handleNavClick("contact")} className="hover:text-gold transition-colors font-bold cursor-pointer">
+            Contact
+          </button>
         </div>
       </div>
 
       <header className="sticky top-0 z-40 bg-white border-b border-primary/10 shadow-sm">
         <div className="max-w-container-max mx-auto px-6 md:px-16 h-22 flex items-center justify-between">
           
-          {/* Logo Section */}
-          <button 
+          <button
             onClick={() => handleNavClick("home")}
+            aria-label={`${BRAND_NAME} home`}
             className="flex items-center gap-3 group text-left cursor-pointer"
           >
-            <div className="h-12 w-auto flex items-center">
-              <img 
-                alt={`${BRAND_NAME} Official Corporate Logo`} 
-                src={LOGO_URL}
-                className="h-10 md:h-12 w-auto object-contain"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="flex flex-col select-none hidden sm:block">
-            </div>
+            <img
+              src={LOGO_URL}
+              alt={BRAND_NAME}
+              referrerPolicy="no-referrer"
+              className="h-12 w-auto object-contain"
+            />
+           
           </button>
+          
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
@@ -132,12 +133,12 @@ export default function Navbar({ activeTab, onNavigate, onRequestQuote }: Navbar
             </div>
             
             <div className="pt-4 border-t border-primary/10 flex flex-col gap-3">
-              <a 
-                href="tel:4035550100"
+              <button
+                onClick={() => handleNavClick("contact")}
                 className="flex items-center justify-center gap-2 font-mono text-xs font-bold text-primary p-3 bg-primary/5 "
               >
-                <Phone className="w-4 h-4 text-secondary" /> (403) 555-0100
-              </a>
+                <Mail className="w-4 h-4 text-secondary" /> Contact Wilco Civil
+              </button>
               <button
                 onClick={() => {
                   onRequestQuote();

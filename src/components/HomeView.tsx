@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight, ChevronRight, Shield, Leaf, Hammer, Trophy } from "lucide-react";
-import { IMAGES, PROJECTS } from "../data";
+import { BRAND_NAME, IMAGES, PROJECTS, SERVICE_AREA } from "../data";
 
 interface HomeViewProps {
   onNavigate: (tab: string) => void;
@@ -28,13 +28,13 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
         <div className="relative z-20 max-w-container-max mx-auto px-6 md:px-16 w-full pt-10">
           <div className="max-w-4xl">
             <span className="inline-block bg-secondary text-white px-4 py-1.5 font-mono text-xs uppercase font-bold tracking-widest mb-6">
-              National Leader
+              {SERVICE_AREA}
             </span>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 leading-none tracking-tight">
               Precision Engineering for a <span className="text-gold">Built to Last</span> Future.
             </h1>
             <p className="font-sans text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mb-10 leading-relaxed font-normal">
-              Leading the way in heavy civil, earthworks, and custom landscape development across Western Canada. We transform massive landscapes with technical mastery and uncompromising reliability.
+              {BRAND_NAME} delivers heavy civil, earthworks, parks, sportsfields, and custom landscape construction across the GVRD and Vancouver Island service area.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
@@ -326,7 +326,7 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
               Uncompromising Standards in Safety &amp; Stewardship
             </h2>
             <p className="font-sans text-sm md:text-base text-text-slate mb-10 leading-relaxed">
-              At Wilco Civil Group, our commitment to safety isn&apos;t just a policy guidelines folder—it is the foundation of our entire project life-cycle culture. We ensure that every construction site operates sustainably and securely for our crew and regional environments alike.
+              At {BRAND_NAME}, safety is part of the full project life cycle. Each local work site is planned around practical field controls, crew protection, and responsible environmental stewardship.
             </p>
             <div className="space-y-6">
               <div className="flex gap-4 items-start">
@@ -338,7 +338,7 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
                     Continuous COR Excellence
                   </h4>
                   <p className="font-sans text-sm text-text-slate">
-                    Ongoing certification audit passes exceeding provincial standards on all Western Canada project fronts.
+                    Field practices aligned to British Columbia project requirements and local municipal expectations.
                   </p>
                 </div>
               </div>

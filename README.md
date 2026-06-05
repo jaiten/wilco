@@ -1,8 +1,8 @@
-# Wilco Civil Group Website
+# Wilco Civil Inc. Website
 
-A responsive marketing and operations website for Wilco Civil Group, a civil infrastructure and landscape development contractor serving Western Canada.
+A responsive marketing and operations website for Wilco Civil Inc., focused on civil infrastructure, parks, landscapes, sportsfields, environmental work, streetscapes, and public realm construction in the GVRD and Vancouver Island service area.
 
-The site is built as a polished single-page React experience with hash-based navigation for the main views: home, about, services, portfolio, safety, environment, contact, and careers. It emphasizes project credibility, regional office routing, safety practices, environmental stewardship, and clear bid/contact workflows.
+The site is built as a polished single-page React experience with hash-based navigation for the main views: home, about, services, portfolio, safety, environment, contact, and careers. It emphasizes project credibility, the specific Wilco Civil Inc. service area, safety practices, environmental stewardship, and clear local inquiry workflows.
 
 ## Tools Used
 

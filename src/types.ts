@@ -1,7 +1,7 @@
 export interface Project {
   id: string;
   title: string;
-  category: "civil" | "landscape" | "sportsfields" | "parks" | "urban_spaces";
+  category: "civil" | "landscape" | "sportsfields" | "parks" | "urban_spaces" | "buildings_structures" | "streetscapes_roads" | "environmental";
   categoryLabel: string;
   location: string;
   description: string;
@@ -31,6 +31,12 @@ export interface Office {
   email: string;
   role: string;
   coordinates: { x: number; y: number }; // Simulated map percentages
+}
+
+export interface WilcoCompanyLink {
+  name: string;
+  region: string;
+  url: string;
 }
 
 export interface Job {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CheckCircle2, ChevronRight, Calculator, FileCheck, Layers, Eye } from "lucide-react";
-import { DIVISIONS, IMAGES } from "../data";
+import { BRAND_NAME, DIVISIONS, IMAGES } from "../data";
 
 interface ServicesViewProps {
   onRequestQuote: () => void;
@@ -22,7 +22,7 @@ export default function ServicesView({ onRequestQuote }: ServicesViewProps) {
             Our Core Divisions
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
-            By operating as a fully integrated, multi-disciplinary contractor, Wilco Civil Group removes coordination bottlenecks and reduces on-site redundancies across your project cycle.
+            By operating as a fully integrated civil and landscape contractor, {BRAND_NAME} supports public realm, parks, streetscape, environmental, sportsfield, and civil works across its local service area.
           </p>
         </div>
       </section>

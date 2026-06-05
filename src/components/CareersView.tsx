@@ -35,7 +35,7 @@ export default function CareersView({ onApply }: CareersViewProps) {
             Careers with Wilco Civil
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
-            Join Western Canada’s premier civil and landscape engineering crew. We offer highly competitive compensation packages, state-of-the-art telemetry equipment, and direct mentorship pathways.
+            Join Wilco Civil Inc. for civil, landscape, parks, sportsfield, environmental, and public realm work across the GVRD and Vancouver Island service area.
           </p>
         </div>
       </section>

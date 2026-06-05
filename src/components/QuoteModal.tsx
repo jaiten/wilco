@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X, Send, CheckCircle2, ShieldCheck } from "lucide-react";
+import { BRAND_NAME } from "../data";
+import { submitForm, SubmissionKind } from "../utils/formHandling";
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -12,6 +14,8 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
   const [formType, setFormType] = useState<string>(initialType);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submissionId, setSubmissionId] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   // Form states
   const [company, setCompany] = useState("");
@@ -28,15 +32,43 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
   const [resumeUploaded, setResumeUploaded] = useState(false);
   const [resumeName, setResumeName] = useState("");
 
+  useEffect(() => {
+    if (!isOpen) return;
+    setFormType(initialType);
+    setIsSuccess(false);
+    setSubmissionId("");
+    setSubmitError("");
+  }, [initialType, isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError("");
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const kind: SubmissionKind = formType === "documentation" || formType === "careers" || formType === "general" ? formType : "quote";
+      const submission = submitForm(kind, {
+        formType,
+        jobTitle: jobTitle || null,
+        company,
+        name,
+        email,
+        phone,
+        projectType: formType === "quote" ? projectType : null,
+        timeline: formType === "quote" ? timeline : null,
+        budget: formType === "quote" ? budget : null,
+        scope,
+        resumeName: formType === "careers" ? resumeName : null,
+        agreementAccepted: agree,
+      });
+      setSubmissionId(submission.id);
       setIsSuccess(true);
-    }, 1200);
+    } catch {
+      setSubmitError("The submission could not be saved locally. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +88,8 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
     setResumeUploaded(false);
     setResumeName("");
     setAgree(false);
+    setSubmissionId("");
+    setSubmitError("");
     onClose();
   };
 
@@ -82,8 +116,11 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
               Submission Received Successfully
             </h3>
             <p className="font-sans text-text-slate max-w-md mx-auto mb-8">
-              Your inquiry has been successfully registered on the Wilco Explorer Cost Tracking system. A regional project director will respond within 24 business hours.
+              Your inquiry has been recorded locally with a reference number. A Wilco Civil Inc. project lead can use the submitted details to follow up.
             </p>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-text-slate bg-primary/5 border border-primary/10 p-3 mb-8 max-w-sm mx-auto">
+              Reference {submissionId}
+            </div>
             <div className="flex justify-center flex-col sm:flex-row gap-4 max-w-sm mx-auto">
               {formType === "quote" && (
                 <div className="flex items-center justify-center gap-2 text-xs text-text-slate font-mono uppercase bg-primary/5 p-3 w-full">
@@ -175,7 +212,7 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
                 </label>
                 <input
                   type="tel"
-                  placeholder="e.g. (403) 555-0100"
+                  placeholder="e.g. (604) 555-0100"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full bg-white border border-primary/30 p-3 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none rounded-none"
@@ -203,7 +240,7 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
                   <div className="relative border border-dashed border-primary/50 bg-white p-3 text-center flex flex-col items-center justify-center min-h-[46px]">
                     {resumeUploaded ? (
                       <span className="text-xs font-mono text-primary font-bold truncate max-w-xs block">
-                        ✔️ {resumeName}
+                        Uploaded: {resumeName}
                       </span>
                     ) : (
                       <span className="text-xs text-text-slate">Click to Upload Document</span>
@@ -301,11 +338,16 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
                 className="mt-1 h-4 w-4 bg-white accent-primary border-primary/30 rounded-none focus:ring-secondary text-primary"
               />
               <label htmlFor="modalAgree" className="text-xs text-text-slate leading-relaxed">
-                I authorize Wilco Civil Group to catalog these specifications and agree to transmit this data securely over the proprietary system framework for bid tracking. <span className="text-secondary">*</span>
+                I authorize {BRAND_NAME} to catalog these specifications for project review and follow-up. <span className="text-secondary">*</span>
               </label>
             </div>
 
             <div className="flex justify-end gap-3 pt-4 border-t border-primary/10">
+              {submitError && (
+                <div className="mr-auto text-xs text-secondary font-sans self-center">
+                  {submitError}
+                </div>
+              )}
               <button
                 type="button"
                 onClick={onClose}
@@ -318,7 +360,7 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
                 disabled={isSubmitting}
                 className="px-8 py-3 bg-primary text-white hover:bg-secondary transition-all font-mono text-xs uppercase font-bold tracking-widest flex items-center gap-2 outline-none rounded-none disabled:opacity-50"
               >
-                {isSubmitting ? "TRANSMITTING..." : (
+                {isSubmitting ? "SAVING..." : (
                   <>
                     SUBMIT INQUIRY <Send className="w-4.5 h-4.5" />
                   </>

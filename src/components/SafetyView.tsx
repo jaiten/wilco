@@ -1,6 +1,6 @@
 import React from "react";
 import { ShieldAlert, Users, Award, ShieldCheck, FileCheck, Check } from "lucide-react";
-import { SAFETY_PRINCIPLES, IMAGES } from "../data";
+import { BRAND_NAME, SAFETY_PRINCIPLES, IMAGES } from "../data";
 
 export default function SafetyView() {
   return (
@@ -16,7 +16,7 @@ export default function SafetyView() {
             Safety &amp; COR Certifications
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
-            Holding continuous, nationally audited Certificate of Recognition (COR) credentials across West-Central Canada. We secure the health and physical safety of our heavy-equipment crews and site environments with absolute fidelity.
+            Wilco Civil Inc. plans safety around British Columbia project requirements, site-specific hazards, field coordination, and practical controls for active civil and landscape construction environments.
           </p>
         </div>
       </section>
@@ -32,7 +32,7 @@ export default function SafetyView() {
           </h2>
           <div className="h-1 w-20 bg-secondary mb-8" />
           <p className="font-sans text-sm text-text-slate mb-6 leading-relaxed">
-            At Wilco Civil Group, our continuous safety strategy is driven from top management down to active equipment cabins. Every field member undergoes safety orientations, site-specific hazard training, and daily Field Level Hazard Assessments (FLHAs) before igniting engines.
+            At {BRAND_NAME}, field safety is planned from management through active work fronts. Crews use orientations, site-specific hazard reviews, and daily coordination before work begins.
           </p>
           <p className="font-sans text-sm text-text-slate mb-8 leading-relaxed">
             We hold that no project deadline or operational complexity justifies the subversion of protective standards. Our team operators are fully authorized to exercise Stop Work Authority instantly and without administrative penalty when identifying variable field risks.
