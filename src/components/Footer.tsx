@@ -56,27 +56,27 @@ export default function Footer({ onNavigate, onRequestQuote }: FooterProps) {
             <ul className="space-y-2.5 text-xs sm:text-sm font-sans text-white/80">
               <li>
                 <button onClick={() => onNavigate("home")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Overview
+                  Overview
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate("about")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → About Us
+                  About Us
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate("services")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Services
+                  Services
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate("portfolio")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Portfolio
+                  Portfolio
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate("careers")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Careers
+                  Careers
                 </button>
               </li>
             </ul>
@@ -89,22 +89,22 @@ export default function Footer({ onNavigate, onRequestQuote }: FooterProps) {
             <ul className="space-y-2.5 text-xs sm:text-sm font-sans text-white/80">
               <li>
                 <button onClick={() => onNavigate("safety")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Safety Goals
+                  Safety Goals
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate("environment")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Eco Stewards
+                  Eco Stewards
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate("contact")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  → Local Branches
+                  Local Branches
                 </button>
               </li>
               <li>
                 <button onClick={onRequestQuote} className="hover:text-gold transition-colors block text-left font-bold text-gold cursor-pointer">
-                  → Bid Portal
+                  Bid Portal
                 </button>
               </li>
             </ul>

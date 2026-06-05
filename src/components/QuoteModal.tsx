@@ -33,7 +33,6 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -264,7 +263,7 @@ export default function QuoteModal({ isOpen, onClose, initialType = "quote", job
                     <option value="< $250k">&lt; $250k CAD</option>
                     <option value="$250k - $1M">$250k - $1M CAD</option>
                     <option value="$1M - $5M">$1M - $5M CAD</option>
-                    <option value="$5M+">$5M+ CAD (Mass Civ)</option>
+                    <option value="$5M+">$5M+ CAD</option>
                   </select>
                 </div>
               </div>

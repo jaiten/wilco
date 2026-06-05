@@ -7,7 +7,7 @@ interface AboutViewProps {
 }
 
 export default function AboutView({ onRequestQuote }: AboutViewProps) {
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(0);
+  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);

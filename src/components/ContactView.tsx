@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle2, Building, Map } from "lucide-react";
+import { Building, CheckCircle2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { OFFICES } from "../data";
 import { Office } from "../types";
 
@@ -8,24 +8,25 @@ export default function ContactView() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Form states
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [officeTarget, setOfficeTarget] = useState("Calgary Office");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const selectedOffice = OFFICES.find(o => o.id === selectedOfficeId) || OFFICES[0];
+  const selectedOffice = OFFICES.find((office) => office.id === selectedOfficeId) || OFFICES[0];
+
+  const handleOfficeSelect = (officeId: string) => {
+    setSelectedOfficeId(officeId);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API transmission
-    setTimeout(() => {
+    window.setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-    }, 1200);
+    }, 800);
   };
 
   const handleReset = () => {
@@ -39,7 +40,6 @@ export default function ContactView() {
 
   return (
     <div className="animate-fade-in text-text-iron pb-24">
-      {/* 1. Header Hero */}
       <section className="relative bg-primary py-24 text-white overflow-hidden text-center hero-clip">
         <div className="absolute inset-0 opacity-10 select-none pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(45deg, #004225 0, #004225 3px, transparent 0, transparent 40px)" }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6">
@@ -50,147 +50,16 @@ export default function ContactView() {
             Our Offices &amp; Contact
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
-            Reach out to our estimator pool or local branches. Select your regional center on our interactive map to get connected with a localized operations manager.
+            Reach out to our estimator pool or local branches. Route your inquiry to the right regional center and connect with a localized operations manager.
           </p>
         </div>
       </section>
 
-      {/* 2. Interactive Offices and Map Section */}
-      <section className="py-20 max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-        
-        {/* Left Column: Office Lists */}
-        <div className="lg:col-span-5 space-y-4">
-          <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-1">
-            MUNICIPAL REGIONS
-          </span>
-          <h2 className="font-display text-2xl md:text-3xl font-black text-primary tracking-tight leading-none mb-6">
-            Western Canada Network
-          </h2>
-          <div className="h-1 w-20 bg-secondary mb-8" />
-
-          <div className="space-y-3">
-            {OFFICES.map((off: Office) => (
-              <button
-                key={off.id}
-                onClick={() => {
-                  setSelectedOfficeId(off.id);
-                  setOfficeTarget(`${off.city} (${off.role})`);
-                }}
-                className={`w-full text-left p-5 border transition-all duration-300 flex justify-between items-center group cursor-pointer ${selectedOfficeId === off.id ? "bg-primary text-white border-primary shadow-md" : "bg-white border-primary/10 text-text-iron hover:bg-primary/5"}`}
-              >
-                <div>
-                  <h4 className={`font-display text-base font-bold ${selectedOfficeId === off.id ? "text-gold" : "text-primary"}`}>
-                    {off.city}
-                  </h4>
-                  <span className={`block font-mono text-[10px] uppercase tracking-wider mt-1 ${selectedOfficeId === off.id ? "text-white/80" : "text-text-slate"}`}>
-                    {off.role}
-                  </span>
-                </div>
-                <MapPin className={`w-5 h-5 transition-transform group-hover:scale-110 ${selectedOfficeId === off.id ? "text-gold" : "text-text-slate"}`} />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Column: Dynamic Profile Card & Simulated GPS Map */}
-        <div className="lg:col-span-7 space-y-8">
-          
-          {/* SVG Map Section */}
-          <div className="border border-primary/15 bg-white p-6 relative rounded-none shadow-sm flex flex-col md:flex-row gap-6">
-            <div className="relative w-full md:w-1/2 aspect-[4/5] bg-primary/5 border border-primary/10 select-none overflow-hidden flex items-center justify-center">
-              
-              {/* Graphic grid layout as map backing */}
-              <div className="absolute inset-0 opacity-15" style={{ backgroundImage: "radial-gradient(#002a15 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
-              
-              {/* Simple stylized abstract province outlines representing Western BC/AB/SK */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
-                <svg viewBox="0 0 100 100" className="w-full h-full stroke-primary/20 fill-primary/3 stroke-1">
-                  {/* Stylized BC line */}
-                  <path d="M 10 10 L 25 10 L 30 50 L 15 90 " />
-                  {/* Stylized AB box */}
-                  <path d="M 30 10 L 50 10 L 50 85 L 30 85 Z" />
-                  {/* Stylized SK box */}
-                  <path d="M 50 15 L 75 15 L 75 80 L 50 80 Z" />
-                </svg>
-              </div>
-
-              {/* Coordinates Marker Mapping */}
-              {OFFICES.map((off: Office) => (
-                <button
-                  key={off.id}
-                  onClick={() => {
-                    setSelectedOfficeId(off.id);
-                    setOfficeTarget(`${off.city} (${off.role})`);
-                  }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group cursor-pointer"
-                  style={{ left: `${off.coordinates.x}%`, top: `${off.coordinates.y}%` }}
-                >
-                  <div className="relative flex items-center justify-center">
-                    <span className={`absolute inline-flex rounded-full opacity-70 animate-ping ${selectedOfficeId === off.id ? "h-6 w-6 bg-secondary" : "h-4 w-4 bg-primary"}`} />
-                    <span className={`relative rounded-full flex items-center justify-center shadow-md ${selectedOfficeId === off.id ? "h-5 w-5 bg-secondary text-white" : "h-3.5 w-3.5 bg-primary"}`} />
-                  </div>
-                  <span className={`absolute top-full left-1/2 -translate-x-1/2 mt-1.5 whitespace-nowrap text-[9px] font-mono uppercase bg-primary text-white font-bold p-1 group-hover:block ${selectedOfficeId === off.id ? "block z-20 text-gold" : "hidden"}`}>
-                    {off.city.split(" ")[0]}
-                  </span>
-                </button>
-              ))}
-
-              <span className="absolute bottom-3 right-3 font-mono text-[8px] uppercase tracking-widest text-text-slate/60 flex items-center gap-1">
-                <Map className="w-3.5 h-3.5" /> WESTERN CORRIDOR GATEWAY
-              </span>
-            </div>
-
-            {/* Selected Office Data Profile Card */}
-            <div className="w-full md:w-1/2 flex flex-col justify-between py-2 space-y-6">
-              <div>
-                <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest">
-                  LOCALIZED STATION
-                </span>
-                <h3 className="font-display text-2xl font-black text-primary mt-1 tracking-tight">
-                  {selectedOffice.city}
-                </h3>
-                <span className="inline-block border-2 border-secondary text-secondary font-mono text-[9px] font-bold uppercase py-0.5 px-2 mt-2">
-                  {selectedOffice.role}
-                </span>
-
-                <div className="space-y-4 mt-6">
-                  <div className="flex gap-3 justify-start items-center">
-                    <MapPin className="w-5 h-5 text-secondary shrink-0" />
-                    <span className="font-sans text-xs sm:text-sm text-text-slate leading-snug">
-                      {selectedOffice.address}
-                    </span>
-                  </div>
-
-                  <div className="flex gap-3 justify-start items-center">
-                    <Phone className="w-5 h-5 text-secondary shrink-0" />
-                    <span className="font-sans text-xs sm:text-sm text-text-slate leading-snug font-bold">
-                      {selectedOffice.phone}
-                    </span>
-                  </div>
-
-                  <div className="flex gap-3 justify-start items-center">
-                    <Mail className="w-5 h-5 text-secondary shrink-0" />
-                    <span className="font-sans text-xs sm:text-sm text-text-slate leading-snug">
-                      {selectedOffice.email}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-primary/10 pt-4 text-[11px] font-sans text-text-slate leading-relaxed">
-                Our local offices house estimators, field engineers, safety advisors, and core surveying crews ready for immediate regional mobilization.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Interactive Contact Form */}
       <section className="py-20 bg-background-warm border-y border-primary/5">
         <div className="max-w-2xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-4">
-              SECURE ENQUIRY PORTAL
+              ENQUIRY PORTAL
             </span>
             <h2 className="font-display text-3xl font-black text-primary tracking-tight">
               Submit an Inquiry
@@ -203,10 +72,10 @@ export default function ContactView() {
               <div className="text-center py-10 animate-scale-up">
                 <CheckCircle2 className="w-16 h-16 text-secondary mx-auto mb-6" />
                 <h3 className="font-display text-2xl font-black text-primary mb-3">
-                  Inquiry Dispatched Successfully
+                  Inquiry Sent Successfully
                 </h3>
                 <p className="font-sans text-sm text-text-slate mb-8 max-w-sm mx-auto">
-                  Your message has been safely routed to the <span className="font-bold">{officeTarget}</span>. One of our regional lead engineers will respond shortly.
+                  Your message has been routed to <span className="font-bold">{selectedOffice.city}</span>. A regional lead will respond shortly.
                 </p>
                 <button
                   onClick={handleReset}
@@ -266,13 +135,13 @@ export default function ContactView() {
                       Route Message To <span className="text-secondary">*</span>
                     </label>
                     <select
-                      value={officeTarget}
-                      onChange={(e) => setOfficeTarget(e.target.value)}
+                      value={selectedOfficeId}
+                      onChange={(e) => handleOfficeSelect(e.target.value)}
                       className="w-full bg-white border border-primary/30 p-3 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none rounded-none select-menu"
                     >
-                      {OFFICES.map(off => (
-                        <option key={off.id} value={`${off.city} (${off.role})`}>
-                          {off.city} ({off.role})
+                      {OFFICES.map((office) => (
+                        <option key={office.id} value={office.id}>
+                          {office.city} ({office.role})
                         </option>
                       ))}
                     </select>
@@ -286,7 +155,7 @@ export default function ContactView() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Bid Solicitation request"
+                    placeholder="e.g. Bid solicitation request"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     className="w-full bg-white border border-primary/30 p-3 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none rounded-none"
@@ -300,7 +169,7 @@ export default function ContactView() {
                   <textarea
                     required
                     rows={4}
-                    placeholder="Provide detailed context regarding specifications, location parameters, or timelines..."
+                    placeholder="Provide details about scope, location, timelines, or procurement requirements."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full bg-white border border-primary/30 p-3 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none h-32 rounded-none resize-none"
@@ -313,15 +182,130 @@ export default function ContactView() {
                     disabled={isSubmitting}
                     className="px-8 py-3 bg-primary hover:bg-secondary hover:text-white text-white font-mono text-xs uppercase font-bold tracking-widest flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-50"
                   >
-                    {isSubmitting ? "TRANSMITTING..." : (
+                    {isSubmitting ? "SENDING..." : (
                       <>
-                        DISPATCH MESSAGE <Send className="w-4 h-4" />
+                        Send Message <Send className="w-4 h-4" />
                       </>
                     )}
                   </button>
                 </div>
               </form>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="lg:col-span-5 space-y-4">
+          <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-1">
+            MUNICIPAL REGIONS
+          </span>
+          <h2 className="font-display text-2xl md:text-3xl font-black text-primary tracking-tight leading-none mb-6">
+            Western Canada Network
+          </h2>
+          <div className="h-1 w-20 bg-secondary mb-8" />
+
+          <div className="space-y-3">
+            {OFFICES.map((office: Office) => (
+              <button
+                key={office.id}
+                onClick={() => handleOfficeSelect(office.id)}
+                className={`w-full text-left p-5 border transition-all duration-300 flex justify-between items-center group cursor-pointer ${selectedOfficeId === office.id ? "bg-primary text-white border-primary shadow-md" : "bg-white border-primary/10 text-text-iron hover:bg-primary/5"}`}
+              >
+                <div>
+                  <h4 className={`font-display text-base font-bold ${selectedOfficeId === office.id ? "text-gold" : "text-primary"}`}>
+                    {office.city}
+                  </h4>
+                  <span className={`block font-mono text-[10px] uppercase tracking-wider mt-1 ${selectedOfficeId === office.id ? "text-white/80" : "text-text-slate"}`}>
+                    {office.role}
+                  </span>
+                </div>
+                <MapPin className={`w-5 h-5 transition-transform group-hover:scale-110 ${selectedOfficeId === office.id ? "text-gold" : "text-text-slate"}`} />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="lg:col-span-7 space-y-8">
+          <div className="border border-primary/15 bg-white p-6 md:p-8 shadow-sm">
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="md:w-5/12 bg-primary text-white p-6 flex flex-col justify-between min-h-[320px]">
+                <div>
+                  <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest">
+                    ACTIVE REGIONAL DESK
+                  </span>
+                  <h3 className="font-display text-3xl font-black mt-3 tracking-tight">
+                    {selectedOffice.city}
+                  </h3>
+                  <span className="inline-block border border-gold text-gold font-mono text-[9px] font-bold uppercase py-1 px-2 mt-3">
+                    {selectedOffice.role}
+                  </span>
+                </div>
+                <div className="mt-8 space-y-4">
+                  <div className="flex gap-3 items-start">
+                    <MapPin className="w-5 h-5 text-gold shrink-0" />
+                    <span className="font-sans text-xs sm:text-sm text-white/85 leading-snug">
+                      {selectedOffice.address}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 items-center">
+                    <Phone className="w-5 h-5 text-gold shrink-0" />
+                    <span className="font-sans text-xs sm:text-sm text-white/90 font-bold">
+                      {selectedOffice.phone}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 items-center">
+                    <Mail className="w-5 h-5 text-gold shrink-0" />
+                    <span className="font-sans text-xs sm:text-sm text-white/85">
+                      {selectedOffice.email}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="md:w-7/12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-primary/5 p-3 text-primary">
+                    <Building className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="block font-mono text-[10px] text-secondary uppercase tracking-widest font-bold">
+                      Regional Dispatch Board
+                    </span>
+                    <p className="font-sans text-sm text-text-slate">
+                      Select an office to update routing, contact details, and local operating context.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {OFFICES.map((office, index) => {
+                    const isActive = selectedOfficeId === office.id;
+                    return (
+                      <button
+                        key={office.id}
+                        onClick={() => handleOfficeSelect(office.id)}
+                        className={`text-left border p-4 min-h-[96px] transition-all cursor-pointer ${isActive ? "bg-secondary text-white border-secondary shadow-md" : "bg-background-warm border-primary/10 hover:border-secondary/50"}`}
+                      >
+                        <span className={`block font-mono text-[10px] uppercase tracking-widest font-bold mb-2 ${isActive ? "text-primary" : "text-secondary"}`}>
+                          Region {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className={`block font-display text-base font-bold ${isActive ? "text-white" : "text-primary"}`}>
+                          {office.city}
+                        </span>
+                        <span className={`block font-sans text-xs mt-1 ${isActive ? "text-white/80" : "text-text-slate"}`}>
+                          {office.role}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-6 border-t border-primary/10 pt-5 text-[11px] font-sans text-text-slate leading-relaxed">
+                  Each branch supports estimating, field engineering, safety coordination, and survey planning for nearby municipal, commercial, and infrastructure work.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

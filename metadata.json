@@ -1,6 +1,5 @@
 {
   "name": "Wilco Civil Group",
   "description": "Precision engineering and high-intensity civil, earthworks, and custom landscape development across Western Canada.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "requestFramePermissions": []
 }

@@ -358,25 +358,45 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white hover:bg-primary hover:text-white border border-primary/10 p-8 text-center flex flex-col items-center justify-center min-h-[220px] transition-all duration-300 group shadow-sm hover:shadow-lg">
-              <Hammer className="w-10 h-10 text-secondary group-hover:text-gold mb-4 group-hover:scale-105 transition-transform" />
-              <div className="font-mono text-xs font-bold uppercase tracking-wider">
-                Heavy Fleet Precision
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white hover:bg-primary hover:text-white border border-primary/10 overflow-hidden text-center flex flex-col min-h-[300px] transition-all duration-300 group shadow-sm hover:shadow-lg">
+              <div className="aspect-[4/3] overflow-hidden bg-primary/10">
+                <img
+                  alt="GPS-guided heavy equipment grading a civil site"
+                  src={IMAGES.heavyMachineryGrading}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <p className="font-sans text-[11px] text-text-slate group-hover:text-white/80 mt-2">
-                100% telemetry GPS guided operators
-              </p>
+              <div className="p-6 flex flex-col items-center justify-center flex-1">
+                <Hammer className="w-10 h-10 text-secondary group-hover:text-gold mb-4 group-hover:scale-105 transition-transform" />
+                <div className="font-mono text-xs font-bold uppercase tracking-wider">
+                  Heavy Fleet Precision
+                </div>
+                <p className="font-sans text-[11px] text-text-slate group-hover:text-white/80 mt-2">
+                  100% telemetry GPS guided operators
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white hover:bg-primary hover:text-white border border-primary/10 p-8 text-center flex flex-col items-center justify-center min-h-[220px] transition-all duration-300 group shadow-sm hover:shadow-lg mt-6 lg:mt-12">
-              <Trophy className="w-10 h-10 text-secondary group-hover:text-gold mb-4 group-hover:scale-105 transition-transform" />
-              <div className="font-mono text-xs font-bold uppercase tracking-wider">
-                Industry Citation Award
+            <div className="bg-white hover:bg-primary hover:text-white border border-primary/10 overflow-hidden text-center flex flex-col min-h-[300px] transition-all duration-300 group shadow-sm hover:shadow-lg sm:mt-6 lg:mt-12">
+              <div className="aspect-[4/3] overflow-hidden bg-primary/10">
+                <img
+                  alt="Completed municipal corridor and park infrastructure"
+                  src={IMAGES.yorksonCommunityAerial}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <p className="font-sans text-[11px] text-text-slate group-hover:text-white/80 mt-2">
-                Decades of on-time corridor handovers
-              </p>
+              <div className="p-6 flex flex-col items-center justify-center flex-1">
+                <Trophy className="w-10 h-10 text-secondary group-hover:text-gold mb-4 group-hover:scale-105 transition-transform" />
+                <div className="font-mono text-xs font-bold uppercase tracking-wider">
+                  Industry Citation Award
+                </div>
+                <p className="font-sans text-[11px] text-text-slate group-hover:text-white/80 mt-2">
+                  Decades of on-time corridor handovers
+                </p>
+              </div>
             </div>
           </div>
         </div>
