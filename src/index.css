@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #002a15;
+  --color-primary-light: #004225;
+  --color-secondary: #7d5700;
+  --color-gold: #feb71a;
+  --color-gold-light: #ffdeaa;
+  --color-background-warm: #f9f9f8;
+  --color-surface-card: #ffffff;
+  --color-text-iron: #191c1c;
+  --color-text-slate: #404942;
+}
+
+@layer utilities {
+  .structural-grid {
+    background-image: linear-gradient(to right, rgba(0, 42, 21, 0.04) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 42, 21, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-clip {
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0% 100%);
+  }
+
+  .industrial-line {
+    height: 4px;
+    width: 80px;
+    background: #7d5700;
+  }
+}
+
+/* Material Symbols Adjustments */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.fill-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Custom Scroll Smoothness and styling overrides to match absolute sharp brand rules */
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9f9f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #002a15;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7d5700;
+}
+
