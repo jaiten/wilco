@@ -1,6 +1,6 @@
 import React from "react";
 import { ShieldAlert, Users, Award, ShieldCheck, FileCheck, Check } from "lucide-react";
-import { BRAND_NAME, SAFETY_PRINCIPLES, IMAGES } from "../data";
+import { BRAND_NAME, SAFETY_PRINCIPLES, PORTFOLIO_IMAGES } from "../data";
 
 export default function SafetyView() {
   return (
@@ -58,11 +58,10 @@ export default function SafetyView() {
 
         <div className="relative">
           <div className="border border-primary/25 p-3 bg-white shadow-xl relative z-10">
-            <img 
-              alt="Rigorous heavy civil construction safety protocols" 
-              src={IMAGES.heavyMachineryGrading}
+            <img
+              alt="Squamish Nation Pedestrian Bridge civil construction"
+              src={PORTFOLIO_IMAGES.squamishBridge}
               className="w-full object-cover aspect-[4/3]"
-              referrerPolicy="no-referrer"
             />
           </div>
           <div className="absolute -bottom-8 -right-8 w-48 h-48 border-r-4 border-b-4 border-primary/25 pointer-events-none -z-10" />

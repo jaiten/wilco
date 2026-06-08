@@ -171,9 +171,7 @@ export default function ServicesView({ onRequestQuote }: ServicesViewProps) {
       {/* 4. Bottom CTA banner */}
       <section className="mt-20 max-w-container-max mx-auto px-6 md:px-16">
         <div className="bg-primary text-white p-8 md:p-14 text-center space-y-6 relative overflow-hidden">
-          <div className="absolute top-0 right-0 opacity-10 font-mono text-[100px] leading-none select-none pointer-events-none translate-x-12 translate-y-6">
-            DIV.01 + DIV.02
-          </div>
+         
           <div className="relative z-10 space-y-4">
             <h3 className="font-display text-2xl md:text-3xl font-black tracking-tight text-white">
               Need a Custom Site Operations Bid?

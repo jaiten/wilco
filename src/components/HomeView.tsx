@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight, ChevronRight, Shield, Leaf, Hammer, Trophy } from "lucide-react";
-import { BRAND_NAME, IMAGES, PROJECTS, SERVICE_AREA } from "../data";
+import { BRAND_NAME, FEATURED_HOME_PROJECTS, IMAGES, PORTFOLIO_IMAGES, SERVICE_AREA } from "../data";
 
 interface HomeViewProps {
   onNavigate: (tab: string) => void;
@@ -8,8 +8,7 @@ interface HomeViewProps {
 }
 
 export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) {
-  // Take featured 4 projects to lay out in bento style
-  const signatureProjects = PROJECTS.slice(0, 4);
+  const signatureProjects = FEATURED_HOME_PROJECTS;
 
   return (
     <div className="animate-fade-in text-text-iron selection:bg-secondary selection:text-white">
@@ -81,10 +80,11 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
           </div>
         </div>
         
-        {/* Decorative Background Text */}
-        <div className="absolute top-1/2 middle -translate-y-1/2 opacity-[0.03] select-none pointer-events-none whitespace-nowrap font-display text-[150px] font-black leading-none tracking-widest">
-          WILCO CIVIL GROUP WILCO CIVIL GROUP
-        </div>
+        {/* Subtle engineering dot-grid watermark */}
+        <div
+          className="absolute inset-0 select-none pointer-events-none opacity-[0.07]"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+        />
       </section>
 
       {/* 3. Services Overview (Clean Structural Layout) */}
@@ -362,10 +362,9 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
             <div className="bg-white hover:bg-primary hover:text-white border border-primary/10 overflow-hidden text-center flex flex-col min-h-[300px] transition-all duration-300 group shadow-sm hover:shadow-lg">
               <div className="aspect-[4/3] overflow-hidden bg-primary/10">
                 <img
-                  alt="GPS-guided heavy equipment grading a civil site"
-                  src={IMAGES.heavyMachineryGrading}
+                  alt="BC Parkway civil road upgrade construction"
+                  src={PORTFOLIO_IMAGES.bcParkway}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="p-6 flex flex-col items-center justify-center flex-1">
@@ -382,10 +381,9 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
             <div className="bg-white hover:bg-primary hover:text-white border border-primary/10 overflow-hidden text-center flex flex-col min-h-[300px] transition-all duration-300 group shadow-sm hover:shadow-lg sm:mt-6 lg:mt-12">
               <div className="aspect-[4/3] overflow-hidden bg-primary/10">
                 <img
-                  alt="Completed municipal corridor and park infrastructure"
-                  src={IMAGES.yorksonCommunityAerial}
+                  alt="Olympic Oval Sport and Event Plaza Richmond"
+                  src={PORTFOLIO_IMAGES.olympicOvalPlaza}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="p-6 flex flex-col items-center justify-center flex-1">

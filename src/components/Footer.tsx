@@ -32,7 +32,6 @@ export default function Footer({ onNavigate, onRequestQuote }: FooterProps) {
           <img
             src={LOGO_URL}
             alt={BRAND_NAME}
-            referrerPolicy="no-referrer"
             className="h-14 w-auto object-contain"
           />
           <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed">

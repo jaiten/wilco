@@ -210,21 +210,8 @@ export default function ContactView() {
         </div>
       </section>
 
-      <section className="py-20 max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-        <div className="lg:col-span-5">
-          <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-4">
-            LOCAL OPERATING AREA
-          </span>
-          <h2 className="font-display text-2xl md:text-3xl font-black text-primary tracking-tight leading-tight mb-6">
-            {BRAND_NAME}: {SERVICE_AREA}
-          </h2>
-          <div className="h-1 w-20 bg-secondary mb-8" />
-          <p className="font-sans text-sm text-text-slate leading-relaxed">
-            Use this page for Wilco Civil Inc. inquiries connected to Greater Vancouver Regional District and Vancouver Island civil, parks, landscape, sportsfield, environmental, street, and public realm work.
-          </p>
-        </div>
-
-        <div className="lg:col-span-7">
+      <section className="py-20 max-w-container-max mx-auto px-6 md:px-16">
+        <div className="max-w-3xl mx-auto">
           <div className="border border-primary/15 bg-white p-6 md:p-8 shadow-sm">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-primary text-white p-6 min-h-[280px] flex flex-col justify-between">
