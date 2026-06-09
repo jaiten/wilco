@@ -68,7 +68,7 @@ export default function ContactView() {
       </section>
 
       <section className="py-20 bg-background-warm border-y border-primary/5">
-        <div className="max-w-2xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6 md:px-16">
           <div className="text-center mb-12">
             <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-4">
               WILCO CIVIL INC.
@@ -79,7 +79,8 @@ export default function ContactView() {
             <div className="h-1 w-16 bg-secondary mx-auto mt-4" />
           </div>
 
-          <div className="bg-white border border-primary/10 p-8 md:p-12 shadow-md">
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="flex-1 min-w-0 bg-white border border-primary/10 p-8 md:p-12 shadow-md">
             {isSuccess ? (
               <div className="text-center py-10 animate-scale-up">
                 <CheckCircle2 className="w-16 h-16 text-secondary mx-auto mb-6" />
@@ -165,7 +166,7 @@ export default function ContactView() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. GVRD civil works inquiry"
+                    placeholder="e.g. Civil works inquiry"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     className="w-full bg-white border border-primary/30 p-3 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none rounded-none"
@@ -179,7 +180,7 @@ export default function ContactView() {
                   <textarea
                     required
                     rows={4}
-                    placeholder="Provide details about scope, site location, timelines, or procurement requirements in the GVRD or Vancouver Island area."
+                    placeholder="Provide details about scope, site location, timelines, or procurement requirements."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full bg-white border border-primary/30 p-3 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none h-32 rounded-none resize-none"
@@ -207,87 +208,75 @@ export default function ContactView() {
               </form>
             )}
           </div>
-        </div>
-      </section>
 
-      <section className="py-20 max-w-container-max mx-auto px-6 md:px-16">
-        <div className="max-w-3xl mx-auto">
-          <div className="border border-primary/15 bg-white p-6 md:p-8 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-primary text-white p-6 min-h-[280px] flex flex-col justify-between">
-                <div>
-                  <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest">
-                    PRIMARY CONTACT PATH
-                  </span>
-                  <h3 className="font-display text-3xl font-black mt-3 tracking-tight">
-                    {PRIMARY_OFFICE.city}
-                  </h3>
-                  <span className="inline-block border border-gold text-gold font-mono text-[9px] font-bold uppercase py-1 px-2 mt-3">
-                    {PRIMARY_OFFICE.role}
+          {/* Sidebar: contact info + other Wilco companies */}
+          <div className="w-full lg:w-72 shrink-0 space-y-4">
+            <div className="bg-primary text-white p-6 flex flex-col gap-4">
+              <div>
+                <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest">
+                  PRIMARY CONTACT PATH
+                </span>
+                <h3 className="font-display text-2xl font-black mt-2 tracking-tight">
+                  {PRIMARY_OFFICE.city}
+                </h3>
+                <span className="inline-block border border-gold text-gold font-mono text-[9px] font-bold uppercase py-1 px-2 mt-2">
+                  {PRIMARY_OFFICE.role}
+                </span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex gap-3 items-start">
+                  <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span className="font-sans text-xs text-white/85 leading-snug">
+                    {PRIMARY_OFFICE.address}
                   </span>
                 </div>
-                <div className="mt-8 space-y-4">
-                  <div className="flex gap-3 items-start">
-                    <MapPin className="w-5 h-5 text-gold shrink-0" />
-                    <span className="font-sans text-xs sm:text-sm text-white/85 leading-snug">
-                      {PRIMARY_OFFICE.address}
-                    </span>
-                  </div>
-                  <div className="flex gap-3 items-center">
-                    <Phone className="w-5 h-5 text-gold shrink-0" />
-                    <span className="font-sans text-xs sm:text-sm text-white/90 font-bold">
-                      {PRIMARY_OFFICE.phone}
-                    </span>
-                  </div>
-                  <div className="flex gap-3 items-center">
-                    <Mail className="w-5 h-5 text-gold shrink-0" />
-                    <span className="font-sans text-xs sm:text-sm text-white/85">
-                      {PRIMARY_OFFICE.email}
-                    </span>
-                  </div>
+                <div className="flex gap-3 items-center">
+                  <Phone className="w-4 h-4 text-gold shrink-0" />
+                  <span className="font-sans text-xs text-white/90 font-bold">
+                    {PRIMARY_OFFICE.phone}
+                  </span>
+                </div>
+                <div className="flex gap-3 items-center">
+                  <Mail className="w-4 h-4 text-gold shrink-0" />
+                  <span className="font-sans text-xs text-white/85">
+                    {PRIMARY_OFFICE.email}
+                  </span>
                 </div>
               </div>
+            </div>
 
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-primary/5 p-3 text-primary">
-                    <Building2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="block font-mono text-[10px] text-secondary uppercase tracking-widest font-bold">
-                      Other Wilco Companies
-                    </span>
-                    <p className="font-sans text-sm text-text-slate">
-                      For work outside this service area, use the appropriate regional Wilco website.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  {WILCO_COMPANY_LINKS.filter((company) => company.name !== "Wilco Civil").map((company) => (
-                    <a
-                      key={company.url}
-                      href={company.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-between gap-4 border border-primary/10 bg-background-warm p-4 hover:border-secondary/60 transition-colors"
-                    >
-                      <span>
-                        <span className="block font-display text-base font-bold text-primary">
-                          {company.name}
-                        </span>
-                        <span className="block font-sans text-xs text-text-slate mt-1">
-                          {company.region}
-                        </span>
+            <div className="bg-white border border-primary/10 p-5 shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <Building2 className="w-4 h-4 text-primary shrink-0" />
+                <span className="font-mono text-[10px] text-secondary uppercase tracking-widest font-bold">
+                  Other Wilco Companies
+                </span>
+              </div>
+              <div className="space-y-2">
+                {WILCO_COMPANY_LINKS.filter((company) => company.name !== "Wilco Civil").map((company) => (
+                  <a
+                    key={company.url}
+                    href={company.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between gap-3 border border-primary/10 bg-background-warm p-3 hover:border-secondary/60 transition-colors"
+                  >
+                    <span>
+                      <span className="block font-display text-sm font-bold text-primary">
+                        {company.name}
                       </span>
-                      <ExternalLink className="w-4 h-4 text-secondary shrink-0" />
-                    </a>
-                  ))}
-                </div>
+                      <span className="block font-sans text-xs text-text-slate mt-0.5">
+                        {company.region}
+                      </span>
+                    </span>
+                    <ExternalLink className="w-3.5 h-3.5 text-secondary shrink-0" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
+      </div>
       </section>
     </div>
   );

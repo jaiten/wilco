@@ -7,10 +7,14 @@ interface AboutViewProps {
 }
 
 export default function AboutView({ onRequestQuote }: AboutViewProps) {
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [openFAQIndices, setOpenFAQIndices] = useState<Set<number>>(new Set());
 
   const toggleFAQ = (index: number) => {
-    setOpenFAQIndex(openFAQIndex === index ? null : index);
+    setOpenFAQIndices(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index); else next.add(index);
+      return next;
+    });
   };
 
   return (
@@ -153,7 +157,7 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
 
         <div className="lg:col-span-7 space-y-4">
           {COMPANY_QA_TRANSCRIPTS.map((faq, index) => {
-            const isOpen = openFAQIndex === index;
+            const isOpen = openFAQIndices.has(index);
             return (
               <div 
                 key={index}

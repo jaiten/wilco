@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Filter, Calendar, MapPin, Layers, User, ChevronUp, ChevronDown } from "lucide-react";
 import { PROJECTS } from "../data";
 import { Project } from "../types";
 
-export default function PortfolioView() {
+interface PortfolioViewProps {
+  initialProjectId?: string;
+}
+
+export default function PortfolioView({ initialProjectId }: PortfolioViewProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [expandedProjId, setExpandedProjId] = useState<string | null>(PROJECTS[0]?.id || null);
+  const [expandedProjId, setExpandedProjId] = useState<string | null>(initialProjectId || PROJECTS[0]?.id || null);
+
+  useEffect(() => {
+    if (initialProjectId) {
+      const el = document.getElementById(`project-${initialProjectId}`);
+      if (el) {
+        setTimeout(() => {
+          const navbarHeight = (document.querySelector("header") as HTMLElement)?.offsetHeight ?? 88;
+          const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
+          window.scrollTo({ top, behavior: "smooth" });
+        }, 150);
+      }
+    }
+  }, []);
 
   const toggleExpand = (id: string) => {
     setExpandedProjId(expandedProjId === id ? null : id);
@@ -70,8 +87,9 @@ export default function PortfolioView() {
           {filteredProjects.map((proj: Project) => {
             const isExpanded = expandedProjId === proj.id;
             return (
-              <div 
+              <div
                 key={proj.id}
+                id={`project-${proj.id}`}
                 className="border border-primary/10 bg-white shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 {/* Main Row Grid */}

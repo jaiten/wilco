@@ -3,7 +3,7 @@ import { ArrowRight, ChevronRight, Shield, Leaf, Hammer, Trophy } from "lucide-r
 import { BRAND_NAME, FEATURED_HOME_PROJECTS, IMAGES, PORTFOLIO_IMAGES, SERVICE_AREA } from "../data";
 
 interface HomeViewProps {
-  onNavigate: (tab: string) => void;
+  onNavigate: (tab: string, projectId?: string) => void;
   onRequestQuote: () => void;
 }
 
@@ -204,14 +204,17 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {/* Project 1 (Large 8/12) */}
-            <div className="md:col-span-8 group relative overflow-hidden h-[450px] border border-primary/10 shadow-md">
-              <img 
+            <div
+              className="md:col-span-8 group relative overflow-hidden h-[450px] border border-primary/10 shadow-md cursor-pointer"
+              onClick={() => onNavigate("portfolio", signatureProjects[0].id)}
+            >
+              <img
                 alt={signatureProjects[0].title}
                 src={signatureProjects[0].imageUrl}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 text-white">
                 <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest mb-2">
                   {signatureProjects[0].categoryLabel}
                 </span>
@@ -221,72 +224,72 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
                 <p className="font-sans text-xs text-white/85 mb-4 max-w-lg leading-relaxed">
                   {signatureProjects[0].description}
                 </p>
-                <button 
-                  onClick={() => onNavigate("portfolio")}
-                  className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-white transition-colors flex items-center gap-1.5"
-                >
+                <span className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold flex items-center gap-1.5">
                   Explore Work <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                </span>
               </div>
             </div>
 
             {/* Project 2 (Small 4/12) */}
-            <div className="md:col-span-4 group relative overflow-hidden h-[450px] border border-primary/10 shadow-md">
-              <img 
+            <div
+              className="md:col-span-4 group relative overflow-hidden h-[450px] border border-primary/10 shadow-md cursor-pointer"
+              onClick={() => onNavigate("portfolio", signatureProjects[1].id)}
+            >
+              <img
                 alt={signatureProjects[1].title}
                 src={signatureProjects[1].imageUrl}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6 text-white">
                 <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest mb-2">
                   {signatureProjects[1].categoryLabel}
                 </span>
                 <h4 className="font-display text-xl font-black mb-3">
                   {signatureProjects[1].title}
                 </h4>
-                <button 
-                  onClick={() => onNavigate("portfolio")}
-                  className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-white transition-colors flex items-center gap-1.5"
-                >
+                <span className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold flex items-center gap-1.5">
                   Explore Work <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                </span>
               </div>
             </div>
 
             {/* Project 3 (Small 4/12) */}
-            <div className="md:col-span-4 group relative overflow-hidden h-[380px] border border-primary/10 shadow-md">
-              <img 
+            <div
+              className="md:col-span-4 group relative overflow-hidden h-[380px] border border-primary/10 shadow-md cursor-pointer"
+              onClick={() => onNavigate("portfolio", signatureProjects[2].id)}
+            >
+              <img
                 alt={signatureProjects[2].title}
                 src={signatureProjects[2].imageUrl}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6 text-white">
                 <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest mb-2">
                   {signatureProjects[2].categoryLabel}
                 </span>
                 <h4 className="font-display text-xl font-black mb-3">
                   {signatureProjects[2].title}
                 </h4>
-                <button 
-                  onClick={() => onNavigate("portfolio")}
-                  className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-white transition-colors flex items-center gap-1.5"
-                >
+                <span className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold flex items-center gap-1.5">
                   Explore Work <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                </span>
               </div>
             </div>
 
             {/* Project 4 (Large 8/12) */}
-            <div className="md:col-span-8 group relative overflow-hidden h-[380px] border border-primary/10 shadow-md">
-              <img 
+            <div
+              className="md:col-span-8 group relative overflow-hidden h-[380px] border border-primary/10 shadow-md cursor-pointer"
+              onClick={() => onNavigate("portfolio", signatureProjects[3].id)}
+            >
+              <img
                 alt={signatureProjects[3].title}
                 src={signatureProjects[3].imageUrl}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 text-white">
                 <span className="font-mono text-xs text-gold font-bold uppercase tracking-widest mb-2">
                   {signatureProjects[3].categoryLabel}
                 </span>
@@ -296,12 +299,9 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
                 <p className="font-sans text-xs text-white/85 mb-4 max-w-lg leading-relaxed">
                   {signatureProjects[3].description}
                 </p>
-                <button 
-                  onClick={() => onNavigate("portfolio")}
-                  className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-white transition-colors flex items-center gap-1.5"
-                >
+                <span className="self-start text-xs font-mono font-bold uppercase tracking-widest text-gold flex items-center gap-1.5">
                   Explore Work <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                </span>
               </div>
             </div>
           </div>

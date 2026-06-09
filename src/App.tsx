@@ -24,6 +24,7 @@ function tabToPath(tab: string): string {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>(() => pathToTab(window.location.pathname));
+  const [portfolioInitialProject, setPortfolioInitialProject] = useState<string | undefined>(undefined);
 
   // Modal controllers
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
@@ -39,8 +40,9 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
-  const handleNavigate = (tab: string) => {
+  const handleNavigate = (tab: string, projectId?: string) => {
     window.history.pushState(null, "", tabToPath(tab));
+    setPortfolioInitialProject(projectId);
     setActiveTab(tab);
     window.scrollTo(0, 0);
   };
@@ -85,7 +87,7 @@ export default function App() {
           />
         )}
         {activeTab === "portfolio" && (
-          <PortfolioView />
+          <PortfolioView initialProjectId={portfolioInitialProject} />
         )}
         {activeTab === "safety" && (
           <SafetyView />
