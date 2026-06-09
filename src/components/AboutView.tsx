@@ -30,7 +30,7 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
             About {BRAND_NAME}
           </h1>
           <p className="font-sans text-sm md:text-base text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
-            Wilco Civil Inc. serves the Greater Vancouver Regional District and Vancouver Island with civil, landscape, sportsfield, environmental, streetscape, and public realm construction experience.
+            Wilco Civil Inc. serves the Greater Vancouver Regional District and Vancouver Island with civil, landscape, sportsfield, environmental, waterfront, streetscape, and public realm construction experience.
           </p>
         </div>
       </section>
@@ -135,7 +135,7 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
       </section>
 
       {/* 4. FAQ / Interactive Q&A Toggles */}
-      <section className="py-24 max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <section className="pt-24 pb-12 max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
         <div className="lg:col-span-5">
           <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-4">
             FACT ACCESSIBILITY

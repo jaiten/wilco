@@ -37,13 +37,16 @@ export default function Footer({ onNavigate, onRequestQuote }: FooterProps) {
           <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed">
             Civil, landscape, parks, sportsfield, environmental, and public realm construction for {SERVICE_AREA}.
           </p>
-          <div className="flex gap-4 items-center pt-2">
+          <div className="flex gap-3 items-center pt-2 flex-wrap">
             <span className="inline-flex bg-primary-light p-2 text-white border border-white/10 text-xs font-mono font-bold tracking-wider">
               COR CERTIFIED
             </span>
             <span className="inline-flex bg-primary-light p-2 text-white border border-white/10 text-xs font-mono font-bold tracking-wider">
               LEED ASSOCIATE
             </span>
+            <a href="https://www.instagram.com/wilcocivil" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="bg-primary-light border border-white/10 p-2 text-white/70 hover:text-gold hover:border-gold/30 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
           </div>
         </div>
 
@@ -61,7 +64,7 @@ export default function Footer({ onNavigate, onRequestQuote }: FooterProps) {
               </li>
               <li>
                 <button onClick={() => onNavigate("about")} className="hover:text-gold transition-colors block text-left cursor-pointer">
-                  About Us
+                  Who We Are
                 </button>
               </li>
               <li>

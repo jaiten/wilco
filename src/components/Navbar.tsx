@@ -14,7 +14,7 @@ export default function Navbar({ activeTab, onNavigate, onRequestQuote }: Navbar
 
   const navItems = [
     { value: "home", label: "Home" },
-    { value: "about", label: "About Us" },
+    { value: "about", label: "Who We Are" },
     { value: "services", label: "Services" },
     { value: "portfolio", label: "Portfolio" },
     { value: "safety", label: "Safety" },

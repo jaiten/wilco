@@ -33,7 +33,7 @@ export default function HomeView({ onNavigate, onRequestQuote }: HomeViewProps) 
               Precision Engineering for a <span className="text-gold">Built to Last</span> Future.
             </h1>
             <p className="font-sans text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mb-10 leading-relaxed font-normal">
-              {BRAND_NAME} delivers heavy civil, earthworks, parks, sportsfields, and custom landscape construction across the GVRD and Vancouver Island service area.
+              {BRAND_NAME} delivers heavy civil, earthworks, parks, sportsfields, waterfront, and custom landscape construction across the GVRD and Vancouver Island service area.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 

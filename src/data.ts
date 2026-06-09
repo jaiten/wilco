@@ -229,18 +229,21 @@ export const DIVISIONS: Division[] = [
     id: "div_landscape",
     title: "Landscape Construction",
     code: "PARKS - SPORTS - PUBLIC REALM",
-    description: "The local team builds parks, sportsfields, plazas, waterfronts, trails, and civic landscapes across Metro Vancouver, the Fraser Valley, Sea to Sky communities, and Vancouver Island.",
+    description: "The local team builds parks, sportsfields, plazas, waterfronts, trails, highrise podium landscapes, and civic landscapes across Metro Vancouver, the Fraser Valley, Sea to Sky communities, and Vancouver Island.",
     imageUrl: PORTFOLIO_IMAGES.hillcrestPark,
     services: [
       "Parks and urban spaces",
       "Sportsfields and athletic facilities",
       "Landscape construction and planting",
-      "Environmental restoration and shoreline work"
+      "Environmental restoration and shoreline work",
+      "Highrise and podium landscape construction",
+      "Waterfront and marine landscape works"
     ],
     features: [
       "Public park and waterfront project experience",
       "Sportsfield and turf construction history",
-      "Environmental and habitat restoration portfolio"
+      "Environmental and habitat restoration portfolio",
+      "Highrise podium and mixed-use landscape delivery"
     ]
   }
 ];
