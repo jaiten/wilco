@@ -155,29 +155,40 @@ export default function AboutView({ onRequestQuote }: AboutViewProps) {
           </button>
         </div>
 
-        <div className="lg:col-span-7 space-y-4">
+        <div className="lg:col-span-7 space-y-3">
           {COMPANY_QA_TRANSCRIPTS.map((faq, index) => {
             const isOpen = openFAQIndices.has(index);
             return (
-              <div 
+              <div
                 key={index}
-                className="border border-primary/10 bg-white transition-all overflow-hidden"
+                className={`border bg-white overflow-hidden transition-[border-color,box-shadow] duration-300 ${
+                  isOpen ? "border-primary/25 shadow-md" : "border-primary/10 shadow-none"
+                }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full text-left p-6 flex justify-between items-center bg-white hover:bg-primary/5 transition-colors group cursor-pointer"
+                  className="w-full text-left px-6 py-5 flex justify-between items-center gap-4 hover:bg-primary/[0.03] transition-colors group cursor-pointer"
                 >
-                  <span className="font-display text-sm md:text-base font-bold text-primary group-hover:text-secondary transition-colors">
+                  <span className={`font-display text-sm md:text-base font-bold transition-colors duration-200 ${isOpen ? "text-secondary" : "text-primary group-hover:text-secondary"}`}>
                     {faq.question}
                   </span>
-                  <ChevronDown className={`w-5 h-5 text-text-slate transition-transform duration-300 ${isOpen ? "rotate-180 text-secondary" : ""}`} />
+                  <ChevronDown className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ease-in-out ${isOpen ? "rotate-180 text-secondary" : "text-text-slate/50"}`} />
                 </button>
-                
-                {isOpen && (
-                  <div className="p-6 pt-0 border-t border-primary/5 bg-background-warm text-sm text-text-slate leading-relaxed font-sans transition-all animate-slide-down">
-                    {faq.answer}
+
+                <div
+                  className="grid transition-[grid-template-rows] duration-350 ease-in-out"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6">
+                      <div className="border-t border-primary/8 pt-5">
+                        <p className="font-sans text-sm text-text-slate leading-[1.8]">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
